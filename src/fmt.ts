@@ -15,7 +15,7 @@
  */
 import { CommandContext, Context, WasmContext } from "./context.ts";
 import { bindSafe } from "./helpers.ts";
-import { Options } from "./options.ts";
+import { IOptions, Options } from "./options.ts";
 import type { LRU } from "./lru.ts";
 import type { InspectOptions, InspectOptionsStylized } from "node:util";
 
@@ -30,32 +30,39 @@ export interface CacheConfig {
   capacity?: number;
   ttl?: number;
   ondispose?: (this: LRU<string>) => void;
-  onrefresh?: (this: LRU<string>, key: string, value?: string, time?: number) => void;
-  onremove?: (this: LRU<string>, key: string, value?: string, time?: number) => void;
+  onrefresh?: (
+    this: LRU<string>,
+    key: string,
+    value?: string,
+    time?: number,
+  ) => void;
+  onremove?: (
+    this: LRU<string>,
+    key: string,
+    value?: string,
+    time?: number,
+  ) => void;
 }
 
 export interface Config {
   type?: "cli" | "wasm";
   cleanup?: boolean | ((this: Formatter, tmp: string) => void);
   cache?: boolean | CacheConfig;
-  options?: Options;
+  options?: IOptions;
 }
 
 export namespace Config {
-  export type Resolved =
-    & Config
-    & (
-      | {
-        readonly type: "cli";
-        cleanup(this: Formatter, tmp?: string): void;
-        cache: Required<CacheConfig>;
-      }
-      | {
-        readonly type: "wasm";
-        cleanup(this: Formatter): void;
-        cache: Required<CacheConfig>;
-      }
-    );
+  export type Resolved = {
+    readonly type: "cli";
+    cleanup(this: Formatter, tmp?: string): void;
+    cache: Required<CacheConfig>;
+    options: Options;
+  } | {
+    readonly type: "wasm";
+    cleanup(this: Formatter): void;
+    cache: Required<CacheConfig>;
+    options: Options;
+  };
 }
 
 /**
@@ -391,8 +398,13 @@ export namespace Config {
  * ```
  */
 export class Formatter implements Disposable {
-  static async init(config: Config & { type: "cli" }): Promise<Formatter.Legacy>;
-  static async init(config?: Config & { type?: "wasm" }): Promise<Formatter.Wasm>;
+  static async init(
+    config: Config & { type: "cli" },
+  ): Promise<Formatter.Legacy>;
+  static async init(
+    config?: Config & { type?: "wasm" },
+  ): Promise<Formatter.Wasm>;
+  static async init(config?: Config): Promise<Formatter>;
   static async init(config?: Config): Promise<Formatter> {
     const formatter = new Formatter({ type: "wasm", ...config ?? {} });
     if (formatter.context instanceof WasmContext) {
@@ -403,6 +415,7 @@ export class Formatter implements Disposable {
 
   static initSync(config: Config & { type: "cli" }): Formatter.Legacy;
   static initSync(config?: Config & { type?: "wasm" }): Formatter.Wasm;
+  static initSync(config?: Config): Formatter;
   static initSync(config?: Config): Formatter {
     const formatter = new Formatter({ type: "wasm", ...config ?? {} });
     if (formatter.context instanceof WasmContext) {
@@ -412,7 +425,9 @@ export class Formatter implements Disposable {
   }
 
   static async initLegacy(config?: Config): Promise<Formatter.Legacy> {
-    return await Formatter.init({ ...config, type: "cli" } as const) as Formatter.Legacy;
+    return await Formatter.init(
+      { ...config, type: "cli" } as const,
+    ) as Formatter.Legacy;
   }
 
   static initLegacySync(config?: Config): Formatter.Legacy {
@@ -436,7 +451,7 @@ export class Formatter implements Disposable {
     Object.assign(this.config, config ?? {});
     Object.assign(this.context.options, options ?? {});
 
-    if (cleanup === false) {
+    if (!cleanup) {
       this.config.cleanup = () => {};
     } else if (typeof cleanup === "function") {
       this.config.cleanup = cleanup;
@@ -517,7 +532,7 @@ export class Formatter implements Disposable {
    */
   public async format(
     input: string | BufferSource,
-    overrides: Options & { check: true },
+    overrides: IOptions & { check: true },
   ): Promise<boolean>;
 
   /**
@@ -539,7 +554,7 @@ export class Formatter implements Disposable {
    */
   public async format(
     input: string | BufferSource,
-    overrides?: Options & { check?: boolean | undefined },
+    overrides?: IOptions & { check?: boolean | undefined },
   ): Promise<string>;
 
   /**
@@ -581,7 +596,7 @@ export class Formatter implements Disposable {
    */
   public async format(
     input: TemplateStringsArray,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): Promise<string>;
 
   /**
@@ -597,7 +612,7 @@ export class Formatter implements Disposable {
    * @see {@linkcode formatSync} for the synchronous version of this method.
    *
    * @param {string | TemplateStringsArray | BufferSource} input The code to format, either as a string, BufferSource, or a template strings array.
-   * @param {[Options?] | [Options?, ...unknown[]] | [...unknown[], Options]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
+   * @param {[IOptions?] | [IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
    * @returns {Promise<string>} A Promise that resolves to the formatted code or rejects if any errors are encountered.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -625,7 +640,7 @@ export class Formatter implements Disposable {
    */
   public async format(
     input: string | TemplateStringsArray | BufferSource,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): Promise<string | boolean> {
     this.context.disposedCheck();
     const [code, options] = this.#context.parseInput(input, values);
@@ -696,7 +711,7 @@ export class Formatter implements Disposable {
    * @see {@link format} for the asynchronous version of this method.
    *
    * @param {string | BufferSource} input The code to check.
-   * @param {Options} [overrides] The options to use for checking.
+   * @param {IOptions} [overrides] The options to use for checking.
    * @returns {boolean} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -713,7 +728,7 @@ export class Formatter implements Disposable {
    */
   public formatSync(
     input: string | BufferSource,
-    overrides: Options & { check: true },
+    overrides: IOptions & { check: true },
   ): boolean;
 
   /**
@@ -727,7 +742,7 @@ export class Formatter implements Disposable {
    * @see {@link format} for the asynchronous version of this method.
    *
    * @param {string | BufferSource} input The code to format.
-   * @param {Options} [overrides] The options to use for formatting.
+   * @param {IOptions} [overrides] The options to use for formatting.
    * @returns {string} The formatted code.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -764,7 +779,7 @@ export class Formatter implements Disposable {
    */
   public formatSync(
     input: string | BufferSource,
-    overrides?: Options & { check?: boolean | undefined },
+    overrides?: IOptions & { check?: boolean | undefined },
   ): string;
 
   /**
@@ -778,7 +793,7 @@ export class Formatter implements Disposable {
    * @see {@link format} for the asynchronous version of this method.
    *
    * @param {TemplateStringsArray} input Template string array containing the target code to be formatted.
-   * @param {[Options?, ...unknown[]] | [...unknown[], Options]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
+   * @param {[IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
    * @returns {string} The formatted code.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -804,7 +819,7 @@ export class Formatter implements Disposable {
    */
   public formatSync(
     input: TemplateStringsArray,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): string;
 
   /**
@@ -821,7 +836,7 @@ export class Formatter implements Disposable {
    * @see {@link format} for the asynchronous version of this method.
    *
    * @param {string | TemplateStringsArray | BufferSource} input The code to format, either as a string, BufferSource, or a template strings array.
-   * @param {[Options?] | [Options?, ...unknown[]] | [...unknown[], Options]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
+   * @param {[IOptions?] | [IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to formatting.
    * @returns {string | boolean} The formatted code or a boolean representing the result of comparing the formatted code to its original input.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -854,7 +869,7 @@ export class Formatter implements Disposable {
    */
   public formatSync(
     input: string | TemplateStringsArray | BufferSource,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): string | boolean {
     this.context.disposedCheck();
     const [code, options] = this.#context.parseInput(input, values);
@@ -872,7 +887,7 @@ export class Formatter implements Disposable {
    * @see {@link checkSync} for the synchronous version of this method.
    *
    * @param {string | BufferSource} input The code to check.
-   * @param {Options} [overrides] The options to use for checking.
+   * @param {IOptions} [overrides] The options to use for checking.
    * @returns {Promise<boolean>} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -899,7 +914,7 @@ export class Formatter implements Disposable {
    */
   public async check(
     input: string | BufferSource,
-    overrides?: Options,
+    overrides?: IOptions,
   ): Promise<boolean>;
 
   /**
@@ -915,7 +930,7 @@ export class Formatter implements Disposable {
    * @see {@link checkSync} for the synchronous version of this method.
    *
    * @param {TemplateStringsArray} input The code to check, provided as a literal template string.
-   * @param {[Options?, ...unknown[]] | [...unknown[], Options]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to checking.
+   * @param {[IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to checking.
    * @returns {Promise<boolean>} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -942,7 +957,7 @@ export class Formatter implements Disposable {
    */
   public async check(
     input: TemplateStringsArray,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): Promise<boolean>;
 
   /**
@@ -958,7 +973,7 @@ export class Formatter implements Disposable {
    * @see {@link checkSync} for the synchronous version of this method.
    *
    * @param {string | TemplateStringsArray | BufferSource} input The code to check, either as a string, BufferSource, or a template strings array.
-   * @param {[Options?] | [Options?, ...unknown[]] | [...unknown[], Options]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to checking.
+   * @param {[IOptions?] | [IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to checking.
    * @returns {Promise<boolean>} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -982,7 +997,7 @@ export class Formatter implements Disposable {
    * @see {@link check} for the asynchronous version of this method.
    *
    * @param {string | BufferSource} input The code to check.
-   * @param {Options} [overrides] The options to use for checking.
+   * @param {IOptions} [overrides] The options to use for checking.
    * @returns {boolean} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -1007,7 +1022,7 @@ export class Formatter implements Disposable {
    * console.log(fmtCli.checkSync(pretty)); // true
    * ```
    */
-  public checkSync(input: string | BufferSource, overrides?: Options): boolean;
+  public checkSync(input: string | BufferSource, overrides?: IOptions): boolean;
 
   /**
    * Synchronously checks if a given {@linkcode input} is formatted correctly,
@@ -1021,7 +1036,7 @@ export class Formatter implements Disposable {
    * @see {@link check} for the asynchronous version of this method.
    *
    * @param {TemplateStringsArray} input The code to check, provided as a literal template string.
-   * @param {[Options?, ...unknown[]] | [...unknown[], Options]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to checking.
+   * @param {[IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to checking.
    * @returns {boolean} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -1048,7 +1063,7 @@ export class Formatter implements Disposable {
    */
   public checkSync(
     input: TemplateStringsArray,
-    ...values: [Options?, ...unknown[]] | [...unknown[], Options]
+    ...values: [IOptions?, ...unknown[]] | [...unknown[], IOptions]
   ): boolean;
 
   /**
@@ -1064,7 +1079,7 @@ export class Formatter implements Disposable {
    * @see {@link check} for the asynchronous version of this method.
    *
    * @param {string | TemplateStringsArray | BufferSource} input The code to check, either as a string, BufferSource, or a template strings array.
-   * @param {[Options?] | [Options?, ...unknown[]] | [...unknown[], Options]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode Options} object, it will be merged with the existing instance {@linkcode options} prior to checking.
+   * @param {[IOptions?] | [IOptions?, ...unknown[]] | [...unknown[], IOptions]} values The options or interpolated values to be parsed and used to construct the template string. If the first or the last value are an {@linkcode IOptions} object, it will be merged with the existing instance {@linkcode options} prior to checking.
    * @returns {boolean} `true` if it's formatted correctly, otherwise `false`.
    * @throws {Error} If the formatter process exits with a non-zero exit code.
    * @throws {ReferenceError} If the formatter has been disposed.
@@ -1127,9 +1142,9 @@ export declare namespace Formatter {
   }
 }
 
-export const fmt: Formatter = await Formatter[
-  typeof Deno.Command === "function" ? "initLegacy" : "init"
-]();
+const type = typeof Deno.Command === "function" ? "cli" : "wasm";
+
+export const fmt: Formatter = await Formatter.init({ type });
 
 export const { format, formatSync, check, checkSync } = fmt;
 

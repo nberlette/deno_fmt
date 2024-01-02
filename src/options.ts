@@ -1,4 +1,4 @@
-import { bindSafe, callsites } from "./helpers.ts";
+import { callsites } from "./helpers.ts";
 import type { InspectOptions, InspectOptionsStylized } from "node:util";
 
 export const defaultOptions = {
@@ -276,7 +276,10 @@ export class Options implements IOptions {
   }
 
   static normalize(options: IOptions): Options {
-    const sanitized = Options.merge(options);
+    let sanitized = Options.merge(options);
+    if (!Function[Symbol.hasInstance].call(Options, options)) {
+      sanitized = new Options(sanitized);
+    }
 
     const {
       check = Options.default.check,

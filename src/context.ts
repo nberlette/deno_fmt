@@ -17,7 +17,7 @@ import { bindSafe } from "./helpers.ts";
  */
 export abstract class Context<K extends string = string> {
   #disposed = false;
-  #config: Config = {
+  #config: Config & { options: Options } = {
     type: "wasm",
     cache: {
       /** Cache capacity (default: 100 entry limit). */
@@ -40,12 +40,12 @@ export abstract class Context<K extends string = string> {
   abstract readonly name: K;
 
   constructor(config?: Config) {
-    const { type = "wasm", cache, options, cleanup } = config ?? {};
+    const { type = "wasm", cache, cleanup } = config ?? {};
+    const options = config?.options as Options | undefined;
     this.#config = {
       ...this.#config,
       type,
       cache,
-      options,
       cleanup,
     };
     if (options) {

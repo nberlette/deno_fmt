@@ -402,3 +402,94 @@ export function bindSafe<
   return fn;
 }
 // #endregion bind.ts
+
+// #region Type Helpers
+
+export type Exclusivity = "[]" | "(]" | "[)" | "()";
+
+type RangeInclusive<
+  Min extends number = number,
+  Max extends number = number,
+> = readonly [minInclusive: Min, maxInclusive: Max, exclusivity: "[]"];
+
+type RangeInclusiveMin<
+  Min extends number = number,
+  Max extends number = number,
+> = readonly [minInclusive: Min, maxExclusive: Max, exclusivity: "[)"];
+
+type RangeInclusiveMax<
+  Min extends number = number,
+  Max extends number = number,
+> = readonly [minExclusive: Min, maxInclusive: Max, exclusivity: "(]"];
+
+type RangeExclusive<
+  Min extends number = number,
+  Max extends number = number,
+> = readonly [minExclusive: Min, maxExclusive: Max, exclusivity: "()"];
+
+type RangeUnknown<
+  Min extends number = number,
+  Max extends number = number,
+  Tex extends Exclusivity = Exclusivity,
+> = readonly [min: Min, max: Max, exclusivity?: Tex];
+
+export type Range<
+  Min extends number = number,
+  Max extends number = number,
+  Tex extends Exclusivity = never,
+> = [Tex] extends [never] ?
+    | RangeInclusive<Min, Max>
+    | RangeInclusiveMin<Min, Max>
+    | RangeInclusiveMax<Min, Max>
+    | RangeExclusive<Min, Max>
+    | RangeUnknown<Min, Max>
+  : globalThis.Extract<
+    Range<Min, Max, never>,
+    Required<RangeUnknown<Min, Max, Tex>>
+  >;
+
+// #endregion Type Helpers
+
+// #region Path Helpers
+export function resolveRelativePath(path: string | URL, base?: string | URL) {
+  const stack = callsites();
+  //     ^---→ [ 0: getCallerFile, 1: caller ]
+  const caller = stack.at(0)!;
+  base ??= caller.getFileName() ?? Deno.cwd();
+  return new URL(
+    path.toString(),
+    "file://" + base.toString().replace(/\/$/, "").replace(/^file:\/\//, "") +
+      "/",
+  );
+}
+// #endregion Path Helpers
+
+// #region String Utilities
+export function smartAbbreviate(str: string, limit = 80, suffix = " ...") {
+  const words = str.split(/\s+/);
+  const adjustedLimit = limit - suffix.length;
+  let result = words.join(" ");
+  if (result.length > limit) {
+    result = words
+      .slice(0, words.length - 1)
+      .reduce((acc, word) => {
+        if (acc.length + word.length + 1 > adjustedLimit) return acc;
+        return `${acc ? acc + " " : ""}${word}`;
+      }) + suffix;
+  }
+
+  return result;
+}
+// #endregion String Utilities
+
+export function setFunctionName<T extends (...args: unknown[]) => unknown>(
+  fn: T,
+  name: string,
+): T {
+  if (typeof fn !== "function") throw new TypeError("fn must be a function");
+  if (!Reflect.defineProperty(fn, "name", { value: name })) {
+    return { [name]: fn }[name] as T;
+  } else {
+    return fn;
+  }
+}
