@@ -3,7 +3,7 @@ import { Sha256 } from "./sha256.ts";
 import { IOptions, Options } from "./options.ts";
 import { dprint } from "./dprint.ts";
 import { Config } from "./fmt.ts";
-import { bindSafe, encode, decode } from "./helpers.ts";
+import { bindSafe, decode, encode } from "./helpers.ts";
 
 /**
  * The abstract Context class is the base for the underlying formatter APIs for

@@ -78,7 +78,7 @@ export interface InspectOptions {
    * the getter function.
    * @default false
    */
-  getters?: 'get' | 'set' | boolean | undefined;
+  getters?: "get" | "set" | boolean | undefined;
   /**
    * If set to `true`, an underscore is used to separate every three digits in all bigints and numbers.
    * @default false
@@ -86,7 +86,18 @@ export interface InspectOptions {
   numericSeparator?: boolean | undefined;
 }
 
-export type Style = 'special' | 'number' | 'bigint' | 'boolean' | 'undefined' | 'null' | 'string' | 'symbol' | 'date' | 'regexp' | 'module';
+export type Style =
+  | "special"
+  | "number"
+  | "bigint"
+  | "boolean"
+  | "undefined"
+  | "null"
+  | "string"
+  | "symbol"
+  | "date"
+  | "regexp"
+  | "module";
 
 export interface InspectOptionsStylized extends InspectOptions {
   stylize(text: string, styleType: Style): string;
