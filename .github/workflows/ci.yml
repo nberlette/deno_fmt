@@ -1,0 +1,20 @@
+name: Deno CI/CD
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: 1.x
+      - name: "deno fmt --check"
+        run: deno fmt --check --unstable
+      - name: "deno lint"
+        run: deno lint --unstable --no-check
+      - name: "deno test"
+        run: deno test --allow-all --unstable --no-check
