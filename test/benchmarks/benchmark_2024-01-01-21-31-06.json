@@ -1,0 +1,4164 @@
+{
+  "runtime": "Deno/1.39.1+8ba828b x86_64-apple-darwin",
+  "cpu": "Apple M1 Pro",
+  "benches": [
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#01:check:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2438,
+            "min": 171333.0,
+            "max": 4068000.0,
+            "avg": 205869.0,
+            "p75": 197000.0,
+            "p99": 784125.0,
+            "p995": 1268541.0,
+            "p999": 2581375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#02:check:sync] should add missing quotes to keys",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2675,
+            "min": 170666.0,
+            "max": 5068584.0,
+            "avg": 187626.0,
+            "p75": 178292.0,
+            "p99": 359000.0,
+            "p995": 964959.0,
+            "p999": 1951917.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#03:check:sync] should use default 'indentWidth' when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2726,
+            "min": 174666.0,
+            "max": 1523750.0,
+            "avg": 184088.0,
+            "p75": 180792.0,
+            "p99": 225083.0,
+            "p995": 444375.0,
+            "p999": 1356458.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#04:check:sync] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2792,
+            "min": 170583.0,
+            "max": 1246916.0,
+            "avg": 179725.0,
+            "p75": 176000.0,
+            "p99": 225917.0,
+            "p995": 620791.0,
+            "p999": 1161583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#05:check:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2813,
+            "min": 169916.0,
+            "max": 1691834.0,
+            "avg": 178413.0,
+            "p75": 175875.0,
+            "p99": 202375.0,
+            "p995": 265250.0,
+            "p999": 1156792.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#06:check:sync] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2766,
+            "min": 172167.0,
+            "max": 1629875.0,
+            "avg": 181455.0,
+            "p75": 178209.0,
+            "p99": 243292.0,
+            "p995": 375250.0,
+            "p999": 1295292.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#07:check:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2760,
+            "min": 172792.0,
+            "max": 1337083.0,
+            "avg": 181872.0,
+            "p75": 178791.0,
+            "p99": 259125.0,
+            "p995": 307667.0,
+            "p999": 1163250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#08:check:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2787,
+            "min": 172750.0,
+            "max": 1171875.0,
+            "avg": 180090.0,
+            "p75": 177958.0,
+            "p99": 206666.0,
+            "p995": 273958.0,
+            "p999": 1094667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#09:check:sync] should use double quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2782,
+            "min": 172542.0,
+            "max": 1522750.0,
+            "avg": 180380.0,
+            "p75": 178041.0,
+            "p99": 203458.0,
+            "p995": 281042.0,
+            "p999": 1080208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#10:check:sync] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2722,
+            "min": 175958.0,
+            "max": 1235083.0,
+            "avg": 184775.0,
+            "p75": 181583.0,
+            "p99": 247209.0,
+            "p995": 360417.0,
+            "p999": 1113583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#11:check:sync] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2706,
+            "min": 177083.0,
+            "max": 2159917.0,
+            "avg": 185454.0,
+            "p75": 182333.0,
+            "p99": 221500.0,
+            "p995": 322416.0,
+            "p999": 1354167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#12:check:sync] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2723,
+            "min": 176417.0,
+            "max": 1139959.0,
+            "avg": 184614.0,
+            "p75": 182334.0,
+            "p99": 212542.0,
+            "p995": 284291.0,
+            "p999": 1049083.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#13:check:sync] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2724,
+            "min": 176875.0,
+            "max": 1438584.0,
+            "avg": 184681.0,
+            "p75": 182166.0,
+            "p99": 207708.0,
+            "p995": 275125.0,
+            "p999": 1089125.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#01:check:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2892,
+            "min": 164125.0,
+            "max": 1440333.0,
+            "avg": 173526.0,
+            "p75": 170875.0,
+            "p99": 229083.0,
+            "p995": 406708.0,
+            "p999": 1168500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#02:check:async] should add missing quotes to keys",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2887,
+            "min": 163875.0,
+            "max": 1237000.0,
+            "avg": 173838.0,
+            "p75": 169834.0,
+            "p99": 256334.0,
+            "p995": 565417.0,
+            "p999": 1022083.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#03:check:async] should use default 'indentWidth' when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2848,
+            "min": 167167.0,
+            "max": 1321958.0,
+            "avg": 176191.0,
+            "p75": 173334.0,
+            "p99": 218125.0,
+            "p995": 307833.0,
+            "p999": 1286584.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#04:check:async] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2914,
+            "min": 164334.0,
+            "max": 1245708.0,
+            "avg": 172198.0,
+            "p75": 169834.0,
+            "p99": 203791.0,
+            "p995": 288708.0,
+            "p999": 1097167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#05:check:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2910,
+            "min": 164709.0,
+            "max": 1379375.0,
+            "avg": 172430.0,
+            "p75": 169959.0,
+            "p99": 194458.0,
+            "p995": 271042.0,
+            "p999": 1281750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#06:check:async] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2894,
+            "min": 164583.0,
+            "max": 1212667.0,
+            "avg": 173364.0,
+            "p75": 170625.0,
+            "p99": 211917.0,
+            "p995": 358292.0,
+            "p999": 1130458.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#07:check:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2930,
+            "min": 162667.0,
+            "max": 1401000.0,
+            "avg": 171251.0,
+            "p75": 168125.0,
+            "p99": 209250.0,
+            "p995": 239375.0,
+            "p999": 1080250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#08:check:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2934,
+            "min": 162625.0,
+            "max": 1174625.0,
+            "avg": 171000.0,
+            "p75": 168375.0,
+            "p99": 218583.0,
+            "p995": 380500.0,
+            "p999": 1057667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#09:check:async] should use double quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2963,
+            "min": 162417.0,
+            "max": 1188333.0,
+            "avg": 169310.0,
+            "p75": 167250.0,
+            "p99": 189000.0,
+            "p995": 218458.0,
+            "p999": 1017875.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#10:check:async] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2879,
+            "min": 166000.0,
+            "max": 1207292.0,
+            "avg": 174256.0,
+            "p75": 171708.0,
+            "p99": 211958.0,
+            "p995": 313375.0,
+            "p999": 1003375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#11:check:async] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2894,
+            "min": 166000.0,
+            "max": 1106042.0,
+            "avg": 173370.0,
+            "p75": 171375.0,
+            "p99": 195166.0,
+            "p995": 217333.0,
+            "p999": 1016834.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#12:check:async] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2879,
+            "min": 166041.0,
+            "max": 1377917.0,
+            "avg": 174305.0,
+            "p75": 171292.0,
+            "p99": 210791.0,
+            "p995": 352583.0,
+            "p999": 1248625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#13:check:async] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2889,
+            "min": 165916.0,
+            "max": 1408333.0,
+            "avg": 173682.0,
+            "p75": 171375.0,
+            "p99": 201375.0,
+            "p995": 243416.0,
+            "p999": 1103208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#01:check:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2748,
+            "min": 173375.0,
+            "max": 1733708.0,
+            "avg": 182590.0,
+            "p75": 179209.0,
+            "p99": 254125.0,
+            "p995": 337083.0,
+            "p999": 1100000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#02:check:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2778,
+            "min": 173125.0,
+            "max": 1288125.0,
+            "avg": 180655.0,
+            "p75": 178292.0,
+            "p99": 206375.0,
+            "p995": 289958.0,
+            "p999": 1068209.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#03:check:sync] should remove extra new lines between paragraphs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2765,
+            "min": 173541.0,
+            "max": 1435625.0,
+            "avg": 181516.0,
+            "p75": 178500.0,
+            "p99": 233542.0,
+            "p995": 304958.0,
+            "p999": 1018209.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#04:check:sync] should convert headings from setext to atx",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2776,
+            "min": 173166.0,
+            "max": 1277292.0,
+            "avg": 180792.0,
+            "p75": 178500.0,
+            "p99": 203875.0,
+            "p995": 260833.0,
+            "p999": 1159000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#05:check:sync] should not modify content inside code blocks",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2695,
+            "min": 173583.0,
+            "max": 1258917.0,
+            "avg": 186190.0,
+            "p75": 180709.0,
+            "p99": 323209.0,
+            "p995": 385833.0,
+            "p999": 1110500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#06:check:sync] should not modify content inside inline code",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2687,
+            "min": 173375.0,
+            "max": 1391625.0,
+            "avg": 186756.0,
+            "p75": 181042.0,
+            "p99": 293583.0,
+            "p995": 350917.0,
+            "p999": 1220167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#07:check:sync] should ensure consistent list indentation",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2615,
+            "min": 173792.0,
+            "max": 1594291.0,
+            "avg": 191967.0,
+            "p75": 183541.0,
+            "p99": 380750.0,
+            "p995": 465167.0,
+            "p999": 1274791.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#08:check:sync] should add proper spacing around list items",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2626,
+            "min": 173333.0,
+            "max": 1433459.0,
+            "avg": 191133.0,
+            "p75": 181917.0,
+            "p99": 363875.0,
+            "p995": 426500.0,
+            "p999": 1213542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#09:check:sync] should ensure consistent use of setext and atx headings",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2552,
+            "min": 174250.0,
+            "max": 1894834.0,
+            "avg": 196683.0,
+            "p75": 187584.0,
+            "p99": 415625.0,
+            "p995": 645417.0,
+            "p999": 1496542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#10:check:sync] should ensure proper spacing between heading and content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2421,
+            "min": 174250.0,
+            "max": 9781792.0,
+            "avg": 207319.0,
+            "p75": 184250.0,
+            "p99": 469292.0,
+            "p995": 1017250.0,
+            "p999": 5845334.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#11:check:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2608,
+            "min": 173959.0,
+            "max": 1723250.0,
+            "avg": 192518.0,
+            "p75": 183875.0,
+            "p99": 386167.0,
+            "p995": 444166.0,
+            "p999": 1567167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#12:check:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2603,
+            "min": 173416.0,
+            "max": 1459000.0,
+            "avg": 192819.0,
+            "p75": 184333.0,
+            "p99": 390917.0,
+            "p995": 476375.0,
+            "p999": 1311250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#13:check:sync] should ensure consistent list indentation (indentWidth: 2)",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2634,
+            "min": 174208.0,
+            "max": 1446959.0,
+            "avg": 190589.0,
+            "p75": 183625.0,
+            "p99": 360000.0,
+            "p995": 426333.0,
+            "p999": 1198541.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#14:check:sync] should ensure consistent list indentation with tabs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2702,
+            "min": 173042.0,
+            "max": 1361167.0,
+            "avg": 185779.0,
+            "p75": 180500.0,
+            "p99": 291417.0,
+            "p995": 371958.0,
+            "p999": 1299917.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#15:check:sync] should wrap prose to the specified lineWidth",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2598,
+            "min": 175417.0,
+            "max": 2299375.0,
+            "avg": 193320.0,
+            "p75": 185083.0,
+            "p99": 354916.0,
+            "p995": 428250.0,
+            "p999": 1338334.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#16:check:sync] should preserve original line breaks with proseWrap:",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2612,
+            "min": 173792.0,
+            "max": 1377375.0,
+            "avg": 192168.0,
+            "p75": 183834.0,
+            "p99": 394875.0,
+            "p995": 516708.0,
+            "p999": 1370959.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#17:check:sync] should always wrap prose with proseWrap: 'always'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2643,
+            "min": 174125.0,
+            "max": 1396250.0,
+            "avg": 189862.0,
+            "p75": 182750.0,
+            "p99": 341750.0,
+            "p995": 409792.0,
+            "p999": 1285709.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#18:check:sync] should never wrap prose with proseWrap: 'never'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2617,
+            "min": 173917.0,
+            "max": 1301875.0,
+            "avg": 191805.0,
+            "p75": 183084.0,
+            "p99": 381167.0,
+            "p995": 429125.0,
+            "p999": 1172750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#19:check:sync] should align table columns with left alignment",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2540,
+            "min": 177292.0,
+            "max": 1544625.0,
+            "avg": 197575.0,
+            "p75": 188125.0,
+            "p99": 417375.0,
+            "p995": 463208.0,
+            "p999": 1416708.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#20:check:sync] should align table columns with different alignments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2602,
+            "min": 175500.0,
+            "max": 1569708.0,
+            "avg": 192871.0,
+            "p75": 184209.0,
+            "p99": 379167.0,
+            "p995": 458667.0,
+            "p999": 1238208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#21:check:sync] should align table columns with mixed content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2694,
+            "min": 175459.0,
+            "max": 1446875.0,
+            "avg": 186300.0,
+            "p75": 181667.0,
+            "p99": 288292.0,
+            "p995": 354708.0,
+            "p999": 1051625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#22:check:sync] should align table columns when empty cells are present",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2472,
+            "min": 175417.0,
+            "max": 8264125.0,
+            "avg": 203112.0,
+            "p75": 184958.0,
+            "p99": 552625.0,
+            "p995": 1030500.0,
+            "p999": 2246625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#01:check:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2756,
+            "min": 164209.0,
+            "max": 1399167.0,
+            "avg": 182255.0,
+            "p75": 173833.0,
+            "p99": 367792.0,
+            "p995": 475542.0,
+            "p999": 1150583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#02:check:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2783,
+            "min": 164083.0,
+            "max": 1520916.0,
+            "avg": 180323.0,
+            "p75": 172583.0,
+            "p99": 361125.0,
+            "p995": 437041.0,
+            "p999": 1240500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#03:check:async] should remove extra new lines between paragraphs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2771,
+            "min": 163708.0,
+            "max": 2332208.0,
+            "avg": 181045.0,
+            "p75": 172625.0,
+            "p99": 321250.0,
+            "p995": 426125.0,
+            "p999": 1718250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#04:check:async] should convert headings from setext to atx",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2906,
+            "min": 164042.0,
+            "max": 1395084.0,
+            "avg": 172658.0,
+            "p75": 169417.0,
+            "p99": 217584.0,
+            "p995": 331500.0,
+            "p999": 1087625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#05:check:async] should not modify content inside code blocks",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2885,
+            "min": 164500.0,
+            "max": 1144041.0,
+            "avg": 173932.0,
+            "p75": 170750.0,
+            "p99": 226417.0,
+            "p995": 304875.0,
+            "p999": 1099042.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#06:check:async] should not modify content inside inline code",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2865,
+            "min": 164083.0,
+            "max": 1220875.0,
+            "avg": 175148.0,
+            "p75": 170834.0,
+            "p99": 271208.0,
+            "p995": 379750.0,
+            "p999": 1178667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#07:check:async] should ensure consistent list indentation",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2789,
+            "min": 164250.0,
+            "max": 1351625.0,
+            "avg": 179988.0,
+            "p75": 172500.0,
+            "p99": 330166.0,
+            "p995": 430125.0,
+            "p999": 1152334.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#08:check:async] should add proper spacing around list items",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2872,
+            "min": 163500.0,
+            "max": 1272375.0,
+            "avg": 174696.0,
+            "p75": 171125.0,
+            "p99": 233000.0,
+            "p995": 335333.0,
+            "p999": 1074542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#09:check:async] should ensure consistent use of setext and atx headings",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2889,
+            "min": 163666.0,
+            "max": 1147750.0,
+            "avg": 173732.0,
+            "p75": 170417.0,
+            "p99": 217000.0,
+            "p995": 288667.0,
+            "p999": 1055375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#10:check:async] should ensure proper spacing between heading and content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2810,
+            "min": 164125.0,
+            "max": 1271000.0,
+            "avg": 178646.0,
+            "p75": 171708.0,
+            "p99": 337750.0,
+            "p995": 406625.0,
+            "p999": 1159833.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#11:check:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2820,
+            "min": 163750.0,
+            "max": 1489458.0,
+            "avg": 178281.0,
+            "p75": 171458.0,
+            "p99": 304625.0,
+            "p995": 434375.0,
+            "p999": 1102709.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#12:check:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2806,
+            "min": 164333.0,
+            "max": 1536583.0,
+            "avg": 178872.0,
+            "p75": 172833.0,
+            "p99": 306625.0,
+            "p995": 413750.0,
+            "p999": 1160916.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#13:check:async] should ensure consistent list indentation (indentWidth: 2)",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2764,
+            "min": 164750.0,
+            "max": 1543250.0,
+            "avg": 181510.0,
+            "p75": 173416.0,
+            "p99": 361292.0,
+            "p995": 447333.0,
+            "p999": 1354041.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#14:check:async] should ensure consistent list indentation with tabs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2811,
+            "min": 163958.0,
+            "max": 1359291.0,
+            "avg": 178506.0,
+            "p75": 172292.0,
+            "p99": 309750.0,
+            "p995": 366834.0,
+            "p999": 1181625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#15:check:async] should wrap prose to the specified lineWidth",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2798,
+            "min": 165084.0,
+            "max": 1449584.0,
+            "avg": 179335.0,
+            "p75": 173625.0,
+            "p99": 301500.0,
+            "p995": 371584.0,
+            "p999": 1111666.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#16:check:async] should preserve original line breaks with proseWrap:",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2804,
+            "min": 164333.0,
+            "max": 1599084.0,
+            "avg": 178953.0,
+            "p75": 172916.0,
+            "p99": 320083.0,
+            "p995": 415917.0,
+            "p999": 1299958.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#17:check:async] should always wrap prose with proseWrap: 'always'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2791,
+            "min": 163458.0,
+            "max": 1518334.0,
+            "avg": 179788.0,
+            "p75": 173417.0,
+            "p99": 324125.0,
+            "p995": 410417.0,
+            "p999": 1130083.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#18:check:async] should never wrap prose with proseWrap: 'never'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2847,
+            "min": 164125.0,
+            "max": 1565875.0,
+            "avg": 176262.0,
+            "p75": 170000.0,
+            "p99": 305834.0,
+            "p995": 425208.0,
+            "p999": 1157917.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#19:check:async] should align table columns with left alignment",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2778,
+            "min": 167417.0,
+            "max": 1399459.0,
+            "avg": 180690.0,
+            "p75": 174709.0,
+            "p99": 365459.0,
+            "p995": 455083.0,
+            "p999": 1290500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#20:check:async] should align table columns with different alignments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2744,
+            "min": 165958.0,
+            "max": 1510375.0,
+            "avg": 182910.0,
+            "p75": 175166.0,
+            "p99": 355750.0,
+            "p995": 480000.0,
+            "p999": 1277167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#21:check:async] should align table columns with mixed content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2776,
+            "min": 165250.0,
+            "max": 1656417.0,
+            "avg": 180847.0,
+            "p75": 174000.0,
+            "p99": 321000.0,
+            "p995": 383375.0,
+            "p999": 1132375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#22:check:async] should align table columns when empty cells are present",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2726,
+            "min": 165958.0,
+            "max": 1901208.0,
+            "avg": 184063.0,
+            "p75": 175166.0,
+            "p99": 376375.0,
+            "p995": 482917.0,
+            "p999": 1393250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#01:check:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2631,
+            "min": 173334.0,
+            "max": 1529875.0,
+            "avg": 190757.0,
+            "p75": 182209.0,
+            "p99": 397167.0,
+            "p995": 448833.0,
+            "p999": 1267500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#02:check:sync] should not use semicolons when 'semiColons' is disabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2666,
+            "min": 173125.0,
+            "max": 1360625.0,
+            "avg": 188290.0,
+            "p75": 181083.0,
+            "p99": 336375.0,
+            "p995": 477666.0,
+            "p999": 1317750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#03:check:sync] should use single quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2702,
+            "min": 173250.0,
+            "max": 1239917.0,
+            "avg": 185767.0,
+            "p75": 180125.0,
+            "p99": 295666.0,
+            "p995": 386750.0,
+            "p999": 1162959.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#04:check:sync] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2635,
+            "min": 174042.0,
+            "max": 1458375.0,
+            "avg": 190593.0,
+            "p75": 182500.0,
+            "p99": 344417.0,
+            "p995": 385125.0,
+            "p999": 1184292.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#05:check:sync] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2575,
+            "min": 175833.0,
+            "max": 1345750.0,
+            "avg": 194869.0,
+            "p75": 187125.0,
+            "p99": 354542.0,
+            "p995": 424500.0,
+            "p999": 1307542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#06:check:sync] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2583,
+            "min": 174125.0,
+            "max": 1559750.0,
+            "avg": 194410.0,
+            "p75": 185917.0,
+            "p99": 379958.0,
+            "p995": 519208.0,
+            "p999": 1331834.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#07:check:sync] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2646,
+            "min": 173791.0,
+            "max": 1489750.0,
+            "avg": 189795.0,
+            "p75": 182917.0,
+            "p99": 335292.0,
+            "p995": 403417.0,
+            "p999": 1326791.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#08:check:sync] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2622,
+            "min": 174167.0,
+            "max": 1468875.0,
+            "avg": 191468.0,
+            "p75": 183125.0,
+            "p99": 375125.0,
+            "p995": 398583.0,
+            "p999": 1222250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#09:check:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2674,
+            "min": 174041.0,
+            "max": 1357375.0,
+            "avg": 187794.0,
+            "p75": 181500.0,
+            "p99": 320000.0,
+            "p995": 383291.0,
+            "p999": 1129458.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#10:check:sync] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2626,
+            "min": 174334.0,
+            "max": 1423125.0,
+            "avg": 191140.0,
+            "p75": 183625.0,
+            "p99": 378625.0,
+            "p995": 439583.0,
+            "p999": 1288667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#11:check:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2644,
+            "min": 173750.0,
+            "max": 1508125.0,
+            "avg": 189832.0,
+            "p75": 182542.0,
+            "p99": 380750.0,
+            "p995": 422292.0,
+            "p999": 1280250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#12:check:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2666,
+            "min": 173916.0,
+            "max": 1153292.0,
+            "avg": 188240.0,
+            "p75": 182042.0,
+            "p99": 316208.0,
+            "p995": 366917.0,
+            "p999": 1117834.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#01:check:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2763,
+            "min": 164125.0,
+            "max": 1396125.0,
+            "avg": 181587.0,
+            "p75": 173208.0,
+            "p99": 372291.0,
+            "p995": 502459.0,
+            "p999": 1334750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#02:check:async] should not use semicolons when 'semiColons' is disabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2731,
+            "min": 164167.0,
+            "max": 1336833.0,
+            "avg": 183814.0,
+            "p75": 175166.0,
+            "p99": 395000.0,
+            "p995": 661083.0,
+            "p999": 1332792.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#03:check:async] should use single quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2792,
+            "min": 164041.0,
+            "max": 1445750.0,
+            "avg": 179702.0,
+            "p75": 172666.0,
+            "p99": 342417.0,
+            "p995": 396792.0,
+            "p999": 1130750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#04:check:async] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2832,
+            "min": 164000.0,
+            "max": 1410708.0,
+            "avg": 177295.0,
+            "p75": 171959.0,
+            "p99": 282125.0,
+            "p995": 335625.0,
+            "p999": 1228375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#05:check:async] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2756,
+            "min": 166083.0,
+            "max": 1309417.0,
+            "avg": 182106.0,
+            "p75": 174083.0,
+            "p99": 322666.0,
+            "p995": 413209.0,
+            "p999": 1236209.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#06:check:async] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2778,
+            "min": 164541.0,
+            "max": 1311250.0,
+            "avg": 180599.0,
+            "p75": 173375.0,
+            "p99": 341083.0,
+            "p995": 405542.0,
+            "p999": 1221542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#07:check:async] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2769,
+            "min": 164542.0,
+            "max": 1434625.0,
+            "avg": 181226.0,
+            "p75": 173917.0,
+            "p99": 353084.0,
+            "p995": 412625.0,
+            "p999": 1240625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#08:check:async] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2779,
+            "min": 164458.0,
+            "max": 1621917.0,
+            "avg": 180581.0,
+            "p75": 173334.0,
+            "p99": 338542.0,
+            "p995": 426209.0,
+            "p999": 1188584.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#09:check:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2901,
+            "min": 164042.0,
+            "max": 1242666.0,
+            "avg": 172972.0,
+            "p75": 170333.0,
+            "p99": 210333.0,
+            "p995": 258417.0,
+            "p999": 1046333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#10:check:async] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2863,
+            "min": 164333.0,
+            "max": 1049333.0,
+            "avg": 175252.0,
+            "p75": 170750.0,
+            "p99": 278083.0,
+            "p995": 412959.0,
+            "p999": 1040083.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#11:check:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2896,
+            "min": 164417.0,
+            "max": 1049959.0,
+            "avg": 173253.0,
+            "p75": 169917.0,
+            "p99": 237750.0,
+            "p995": 313833.0,
+            "p999": 1017500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/check.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#12:check:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2848,
+            "min": 164333.0,
+            "max": 1594250.0,
+            "avg": 176186.0,
+            "p75": 171375.0,
+            "p99": 285958.0,
+            "p995": 429125.0,
+            "p999": 1267375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#01:fmt:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3041,
+            "min": 136167.0,
+            "max": 6623959.0,
+            "avg": 164896.0,
+            "p75": 153500.0,
+            "p99": 685750.0,
+            "p995": 888750.0,
+            "p999": 1726416.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#02:fmt:sync] should add missing quotes to keys",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3327,
+            "min": 136125.0,
+            "max": 1749500.0,
+            "avg": 150754.0,
+            "p75": 145250.0,
+            "p99": 323792.0,
+            "p995": 464125.0,
+            "p999": 1100833.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#03:fmt:sync] should use default 'indentWidth' when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3325,
+            "min": 137916.0,
+            "max": 1104459.0,
+            "avg": 150811.0,
+            "p75": 144292.0,
+            "p99": 331792.0,
+            "p995": 401375.0,
+            "p999": 1030958.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#04:fmt:sync] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3396,
+            "min": 135500.0,
+            "max": 1939958.0,
+            "avg": 147703.0,
+            "p75": 142584.0,
+            "p99": 269708.0,
+            "p995": 340791.0,
+            "p999": 1340209.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#05:fmt:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3462,
+            "min": 134917.0,
+            "max": 1186417.0,
+            "avg": 144875.0,
+            "p75": 141500.0,
+            "p99": 208500.0,
+            "p995": 283875.0,
+            "p999": 963667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#06:fmt:sync] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3377,
+            "min": 135708.0,
+            "max": 1336834.0,
+            "avg": 148668.0,
+            "p75": 143750.0,
+            "p99": 304916.0,
+            "p995": 343292.0,
+            "p999": 1076833.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#07:fmt:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3374,
+            "min": 137583.0,
+            "max": 1109042.0,
+            "avg": 148629.0,
+            "p75": 144167.0,
+            "p99": 254750.0,
+            "p995": 342125.0,
+            "p999": 932667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#08:fmt:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3297,
+            "min": 137917.0,
+            "max": 1396666.0,
+            "avg": 152110.0,
+            "p75": 146709.0,
+            "p99": 290292.0,
+            "p995": 382833.0,
+            "p999": 1116541.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#09:fmt:sync] should use double quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3341,
+            "min": 137833.0,
+            "max": 1233208.0,
+            "avg": 150117.0,
+            "p75": 144542.0,
+            "p99": 317541.0,
+            "p995": 366584.0,
+            "p999": 948792.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#10:fmt:sync] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3192,
+            "min": 142959.0,
+            "max": 1188208.0,
+            "avg": 157154.0,
+            "p75": 151166.0,
+            "p99": 319583.0,
+            "p995": 365333.0,
+            "p999": 1042459.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#11:fmt:sync] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3229,
+            "min": 142166.0,
+            "max": 1166833.0,
+            "avg": 155530.0,
+            "p75": 149208.0,
+            "p99": 323459.0,
+            "p995": 361750.0,
+            "p999": 910542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#12:fmt:sync] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3265,
+            "min": 142000.0,
+            "max": 1541375.0,
+            "avg": 153665.0,
+            "p75": 149208.0,
+            "p99": 265542.0,
+            "p995": 352833.0,
+            "p999": 1115125.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:json",
+      "name": "[json:#13:fmt:sync] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3273,
+            "min": 141917.0,
+            "max": 1040625.0,
+            "avg": 153346.0,
+            "p75": 148250.0,
+            "p99": 295541.0,
+            "p995": 354000.0,
+            "p999": 925000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#01:fmt:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3515,
+            "min": 130291.0,
+            "max": 1299416.0,
+            "avg": 142738.0,
+            "p75": 138834.0,
+            "p99": 241250.0,
+            "p995": 341917.0,
+            "p999": 1070458.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#02:fmt:async] should add missing quotes to keys",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3568,
+            "min": 130458.0,
+            "max": 1162792.0,
+            "avg": 140510.0,
+            "p75": 136542.0,
+            "p99": 233250.0,
+            "p995": 310625.0,
+            "p999": 882917.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#03:fmt:async] should use default 'indentWidth' when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3485,
+            "min": 132125.0,
+            "max": 1366417.0,
+            "avg": 143875.0,
+            "p75": 139709.0,
+            "p99": 262250.0,
+            "p995": 339875.0,
+            "p999": 1064208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#04:fmt:async] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3501,
+            "min": 130833.0,
+            "max": 1093417.0,
+            "avg": 143222.0,
+            "p75": 137375.0,
+            "p99": 302125.0,
+            "p995": 364167.0,
+            "p999": 1002917.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#05:fmt:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3467,
+            "min": 130959.0,
+            "max": 1234875.0,
+            "avg": 144644.0,
+            "p75": 138958.0,
+            "p99": 292584.0,
+            "p995": 354583.0,
+            "p999": 1112375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#06:fmt:async] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3572,
+            "min": 129833.0,
+            "max": 1235625.0,
+            "avg": 140612.0,
+            "p75": 135125.0,
+            "p99": 295334.0,
+            "p995": 493000.0,
+            "p999": 1027667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#07:fmt:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3002,
+            "min": 130625.0,
+            "max": 11504666.0,
+            "avg": 167007.0,
+            "p75": 136875.0,
+            "p99": 673917.0,
+            "p995": 1385708.0,
+            "p999": 5348000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#08:fmt:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2897,
+            "min": 130125.0,
+            "max": 3463416.0,
+            "avg": 173454.0,
+            "p75": 139584.0,
+            "p99": 989041.0,
+            "p995": 1231666.0,
+            "p999": 2893583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#09:fmt:async] should use double quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3414,
+            "min": 130292.0,
+            "max": 1962125.0,
+            "avg": 146966.0,
+            "p75": 136417.0,
+            "p99": 373167.0,
+            "p995": 686292.0,
+            "p999": 1223125.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#10:fmt:async] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3246,
+            "min": 133709.0,
+            "max": 5209917.0,
+            "avg": 154575.0,
+            "p75": 139917.0,
+            "p99": 479166.0,
+            "p995": 749917.0,
+            "p999": 1573667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#11:fmt:async] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3091,
+            "min": 133625.0,
+            "max": 4840250.0,
+            "avg": 162218.0,
+            "p75": 140542.0,
+            "p99": 693667.0,
+            "p995": 1053583.0,
+            "p999": 2844458.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#12:fmt:async] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3223,
+            "min": 133958.0,
+            "max": 1481250.0,
+            "avg": 155597.0,
+            "p75": 140875.0,
+            "p99": 575958.0,
+            "p995": 830750.0,
+            "p999": 1366500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:json",
+      "name": "[json:#13:fmt:async] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3389,
+            "min": 133625.0,
+            "max": 1455875.0,
+            "avg": 148228.0,
+            "p75": 140250.0,
+            "p99": 349375.0,
+            "p995": 453042.0,
+            "p999": 1248292.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#01:fmt:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2865,
+            "min": 140208.0,
+            "max": 16344417.0,
+            "avg": 175053.0,
+            "p75": 146583.0,
+            "p99": 629041.0,
+            "p995": 1165875.0,
+            "p999": 5527291.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#02:fmt:sync] should not use semicolons when 'semiColons' is disabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3344,
+            "min": 140458.0,
+            "max": 1071000.0,
+            "avg": 150090.0,
+            "p75": 145458.0,
+            "p99": 294458.0,
+            "p995": 393625.0,
+            "p999": 978250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#03:fmt:sync] should use single quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3299,
+            "min": 140500.0,
+            "max": 1412458.0,
+            "avg": 152055.0,
+            "p75": 146500.0,
+            "p99": 314167.0,
+            "p995": 379667.0,
+            "p999": 1037375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#04:fmt:sync] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3282,
+            "min": 140708.0,
+            "max": 1567875.0,
+            "avg": 152827.0,
+            "p75": 146333.0,
+            "p99": 314583.0,
+            "p995": 390209.0,
+            "p999": 1110334.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#05:fmt:sync] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3308,
+            "min": 139959.0,
+            "max": 1618625.0,
+            "avg": 151625.0,
+            "p75": 146417.0,
+            "p99": 281459.0,
+            "p995": 345584.0,
+            "p999": 1064834.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#06:fmt:sync] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3351,
+            "min": 140125.0,
+            "max": 978458.0,
+            "avg": 149723.0,
+            "p75": 145833.0,
+            "p99": 262625.0,
+            "p995": 369917.0,
+            "p999": 872625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#07:fmt:sync] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3277,
+            "min": 140542.0,
+            "max": 1355833.0,
+            "avg": 153055.0,
+            "p75": 146375.0,
+            "p99": 331708.0,
+            "p995": 407541.0,
+            "p999": 1033208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#08:fmt:sync] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3237,
+            "min": 140333.0,
+            "max": 1281834.0,
+            "avg": 154947.0,
+            "p75": 147000.0,
+            "p99": 366958.0,
+            "p995": 434084.0,
+            "p999": 1064584.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#09:fmt:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3272,
+            "min": 140208.0,
+            "max": 1189875.0,
+            "avg": 153263.0,
+            "p75": 147375.0,
+            "p99": 310792.0,
+            "p995": 362584.0,
+            "p999": 1071625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#10:fmt:sync] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3248,
+            "min": 140333.0,
+            "max": 1264125.0,
+            "avg": 154403.0,
+            "p75": 148333.0,
+            "p99": 317250.0,
+            "p995": 380750.0,
+            "p999": 933542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#11:fmt:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3303,
+            "min": 139959.0,
+            "max": 1248625.0,
+            "avg": 151820.0,
+            "p75": 147291.0,
+            "p99": 273875.0,
+            "p995": 350625.0,
+            "p999": 949208.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:ts",
+      "name": "[ts:#12:fmt:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3302,
+            "min": 140125.0,
+            "max": 1130917.0,
+            "avg": 151897.0,
+            "p75": 146875.0,
+            "p99": 279458.0,
+            "p995": 335625.0,
+            "p999": 1078750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#01:fmt:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3570,
+            "min": 129708.0,
+            "max": 1127625.0,
+            "avg": 140483.0,
+            "p75": 136375.0,
+            "p99": 232334.0,
+            "p995": 313000.0,
+            "p999": 1047167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#02:fmt:async] should not use semicolons when 'semiColons' is disabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3530,
+            "min": 130250.0,
+            "max": 1190291.0,
+            "avg": 142055.0,
+            "p75": 136792.0,
+            "p99": 285334.0,
+            "p995": 368875.0,
+            "p999": 1004209.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#03:fmt:async] should use single quotes when 'singleQuote' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3661,
+            "min": 129750.0,
+            "max": 1237500.0,
+            "avg": 136980.0,
+            "p75": 134375.0,
+            "p99": 208500.0,
+            "p995": 260417.0,
+            "p999": 870375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#04:fmt:async] should use the default width of 2 when 'indentWidth' is not",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3688,
+            "min": 129750.0,
+            "max": 940583.0,
+            "avg": 135970.0,
+            "p75": 134167.0,
+            "p99": 167625.0,
+            "p995": 199917.0,
+            "p999": 863417.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#05:fmt:async] should use the correct width when 'indentWidth' is set",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3363,
+            "min": 130083.0,
+            "max": 8647750.0,
+            "avg": 149086.0,
+            "p75": 135750.0,
+            "p99": 430042.0,
+            "p995": 769125.0,
+            "p999": 1281291.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#06:fmt:async] should use tabs when 'useTabs' is enabled",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3598,
+            "min": 130125.0,
+            "max": 1146917.0,
+            "avg": 139365.0,
+            "p75": 135333.0,
+            "p99": 251375.0,
+            "p995": 367541.0,
+            "p999": 955667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#07:fmt:async] should use tabs when both 'indentWidth' and 'useTabs' are",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3521,
+            "min": 130584.0,
+            "max": 1539500.0,
+            "avg": 142572.0,
+            "p75": 136125.0,
+            "p99": 347250.0,
+            "p995": 410042.0,
+            "p999": 1098500.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#08:fmt:async] should remove trailing commas",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3593,
+            "min": 130542.0,
+            "max": 1136125.0,
+            "avg": 139541.0,
+            "p75": 135792.0,
+            "p99": 244125.0,
+            "p995": 337000.0,
+            "p999": 901292.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#09:fmt:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3575,
+            "min": 130542.0,
+            "max": 1129834.0,
+            "avg": 140261.0,
+            "p75": 135625.0,
+            "p99": 257667.0,
+            "p995": 359750.0,
+            "p999": 977125.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#10:fmt:async] should remove extra new lines",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3341,
+            "min": 130250.0,
+            "max": 2358833.0,
+            "avg": 150099.0,
+            "p75": 137083.0,
+            "p99": 469458.0,
+            "p995": 746125.0,
+            "p999": 1594333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#11:fmt:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3267,
+            "min": 130875.0,
+            "max": 9676167.0,
+            "avg": 153519.0,
+            "p75": 137541.0,
+            "p99": 502500.0,
+            "p995": 784042.0,
+            "p999": 1626541.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:ts",
+      "name": "[ts:#12:fmt:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3047,
+            "min": 130583.0,
+            "max": 17751208.0,
+            "avg": 164559.0,
+            "p75": 135875.0,
+            "p99": 607000.0,
+            "p995": 871125.0,
+            "p999": 7236958.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#01:fmt:sync] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3240,
+            "min": 139750.0,
+            "max": 1288833.0,
+            "avg": 154801.0,
+            "p75": 146541.0,
+            "p99": 374167.0,
+            "p995": 479250.0,
+            "p999": 1101166.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#02:fmt:sync] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3311,
+            "min": 140458.0,
+            "max": 1434000.0,
+            "avg": 151467.0,
+            "p75": 145708.0,
+            "p99": 340500.0,
+            "p995": 395583.0,
+            "p999": 1015167.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#03:fmt:sync] should remove extra new lines between paragraphs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3300,
+            "min": 140291.0,
+            "max": 1387000.0,
+            "avg": 151956.0,
+            "p75": 146458.0,
+            "p99": 341000.0,
+            "p995": 382208.0,
+            "p999": 1041708.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#04:fmt:sync] should convert headings from setext to atx",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3050,
+            "min": 140792.0,
+            "max": 11458083.0,
+            "avg": 164455.0,
+            "p75": 145917.0,
+            "p99": 430708.0,
+            "p995": 740333.0,
+            "p999": 2833125.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#05:fmt:sync] should not modify content inside code blocks",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3327,
+            "min": 140625.0,
+            "max": 1174917.0,
+            "avg": 150737.0,
+            "p75": 146125.0,
+            "p99": 292708.0,
+            "p995": 370375.0,
+            "p999": 1056875.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#06:fmt:sync] should not modify content inside inline code",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3307,
+            "min": 140708.0,
+            "max": 1323333.0,
+            "avg": 151680.0,
+            "p75": 146166.0,
+            "p99": 305583.0,
+            "p995": 409083.0,
+            "p999": 999709.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#07:fmt:sync] should ensure consistent list indentation",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3133,
+            "min": 140167.0,
+            "max": 1988792.0,
+            "avg": 160110.0,
+            "p75": 147417.0,
+            "p99": 455042.0,
+            "p995": 694833.0,
+            "p999": 1094958.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#08:fmt:sync] should add proper spacing around list items",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2905,
+            "min": 140750.0,
+            "max": 12290500.0,
+            "avg": 172969.0,
+            "p75": 147583.0,
+            "p99": 609417.0,
+            "p995": 1010709.0,
+            "p999": 4110750.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#09:fmt:sync] should ensure consistent use of setext and atx headings",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3299,
+            "min": 140375.0,
+            "max": 1304375.0,
+            "avg": 152009.0,
+            "p75": 146000.0,
+            "p99": 337250.0,
+            "p995": 446584.0,
+            "p999": 1141625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#10:fmt:sync] should ensure proper spacing between heading and content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3300,
+            "min": 140500.0,
+            "max": 1238125.0,
+            "avg": 151968.0,
+            "p75": 146458.0,
+            "p99": 297709.0,
+            "p995": 383083.0,
+            "p999": 1061041.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#11:fmt:sync] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3278,
+            "min": 140459.0,
+            "max": 1079333.0,
+            "avg": 152994.0,
+            "p75": 147000.0,
+            "p99": 290584.0,
+            "p995": 352917.0,
+            "p999": 954000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#12:fmt:sync] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3297,
+            "min": 140416.0,
+            "max": 1320750.0,
+            "avg": 152127.0,
+            "p75": 146708.0,
+            "p99": 286209.0,
+            "p995": 356375.0,
+            "p999": 997000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#13:fmt:sync] should ensure consistent list indentation (indentWidth: 2)",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3311,
+            "min": 140333.0,
+            "max": 1221875.0,
+            "avg": 151542.0,
+            "p75": 146833.0,
+            "p99": 291708.0,
+            "p995": 392958.0,
+            "p999": 929958.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#14:fmt:sync] should ensure consistent list indentation with tabs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3271,
+            "min": 140500.0,
+            "max": 1308166.0,
+            "avg": 153338.0,
+            "p75": 147375.0,
+            "p99": 299583.0,
+            "p995": 361041.0,
+            "p999": 1044333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#15:fmt:sync] should wrap prose to the specified lineWidth",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3337,
+            "min": 141208.0,
+            "max": 1206209.0,
+            "avg": 150300.0,
+            "p75": 146375.0,
+            "p99": 269042.0,
+            "p995": 357708.0,
+            "p999": 881042.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#16:fmt:sync] should preserve original line breaks with proseWrap:",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3298,
+            "min": 140667.0,
+            "max": 1231667.0,
+            "avg": 152076.0,
+            "p75": 145917.0,
+            "p99": 303959.0,
+            "p995": 401292.0,
+            "p999": 1108625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#17:fmt:sync] should always wrap prose with proseWrap: 'always'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3210,
+            "min": 140708.0,
+            "max": 1591875.0,
+            "avg": 156306.0,
+            "p75": 148291.0,
+            "p99": 349542.0,
+            "p995": 407041.0,
+            "p999": 1073667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#18:fmt:sync] should never wrap prose with proseWrap: 'never'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3284,
+            "min": 140250.0,
+            "max": 1008083.0,
+            "avg": 152702.0,
+            "p75": 147333.0,
+            "p99": 317459.0,
+            "p995": 362458.0,
+            "p999": 883333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#19:fmt:sync] should align table columns with left alignment",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2991,
+            "min": 142166.0,
+            "max": 13353959.0,
+            "avg": 167684.0,
+            "p75": 147625.0,
+            "p99": 475666.0,
+            "p995": 935667.0,
+            "p999": 2452583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#20:fmt:sync] should align table columns with different alignments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3314,
+            "min": 141959.0,
+            "max": 1002667.0,
+            "avg": 151359.0,
+            "p75": 146917.0,
+            "p99": 292834.0,
+            "p995": 371166.0,
+            "p999": 910416.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#21:fmt:sync] should align table columns with mixed content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3215,
+            "min": 142458.0,
+            "max": 1597042.0,
+            "avg": 156012.0,
+            "p75": 148541.0,
+            "p99": 360334.0,
+            "p995": 423667.0,
+            "p999": 1013667.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:sync:md",
+      "name": "[md:#22:fmt:sync] should align table columns when empty cells are present",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3118,
+            "min": 142417.0,
+            "max": 2585500.0,
+            "avg": 161815.0,
+            "p75": 149375.0,
+            "p99": 457250.0,
+            "p995": 600375.0,
+            "p999": 1768250.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#01:fmt:async] should add a final newline at EOF",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3133,
+            "min": 130250.0,
+            "max": 8486750.0,
+            "avg": 161161.0,
+            "p75": 136917.0,
+            "p99": 708084.0,
+            "p995": 976708.0,
+            "p999": 3778625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#02:fmt:async] should remove leading and trailing whitespace",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3314,
+            "min": 130292.0,
+            "max": 1670875.0,
+            "avg": 151275.0,
+            "p75": 137209.0,
+            "p99": 461458.0,
+            "p995": 719375.0,
+            "p999": 1586959.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#03:fmt:async] should remove extra new lines between paragraphs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3350,
+            "min": 130209.0,
+            "max": 2035167.0,
+            "avg": 149656.0,
+            "p75": 137667.0,
+            "p99": 417166.0,
+            "p995": 643416.0,
+            "p999": 1204625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#04:fmt:async] should convert headings from setext to atx",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3567,
+            "min": 130708.0,
+            "max": 1108084.0,
+            "avg": 140569.0,
+            "p75": 135666.0,
+            "p99": 284875.0,
+            "p995": 348125.0,
+            "p999": 1021000.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#05:fmt:async] should not modify content inside code blocks",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3529,
+            "min": 130375.0,
+            "max": 1127625.0,
+            "avg": 142129.0,
+            "p75": 136042.0,
+            "p99": 324750.0,
+            "p995": 466709.0,
+            "p999": 982292.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#06:fmt:async] should not modify content inside inline code",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 2875,
+            "min": 130333.0,
+            "max": 12300000.0,
+            "avg": 174403.0,
+            "p75": 138291.0,
+            "p99": 697125.0,
+            "p995": 1655250.0,
+            "p999": 5780833.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#07:fmt:async] should ensure consistent list indentation",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3369,
+            "min": 130541.0,
+            "max": 2308750.0,
+            "avg": 148837.0,
+            "p75": 136875.0,
+            "p99": 451916.0,
+            "p995": 632542.0,
+            "p999": 1436333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#08:fmt:async] should add proper spacing around list items",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3238,
+            "min": 129750.0,
+            "max": 2673125.0,
+            "avg": 154845.0,
+            "p75": 137208.0,
+            "p99": 610542.0,
+            "p995": 942417.0,
+            "p999": 1948042.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#09:fmt:async] should ensure consistent use of setext and atx headings",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3158,
+            "min": 130167.0,
+            "max": 7804667.0,
+            "avg": 158754.0,
+            "p75": 136708.0,
+            "p99": 545291.0,
+            "p995": 919250.0,
+            "p999": 3434625.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#10:fmt:async] should ensure proper spacing between heading and content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3207,
+            "min": 130708.0,
+            "max": 2749625.0,
+            "avg": 156361.0,
+            "p75": 138084.0,
+            "p99": 588875.0,
+            "p995": 913375.0,
+            "p999": 1371416.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#11:fmt:async] should respect block-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3148,
+            "min": 130375.0,
+            "max": 7046375.0,
+            "avg": 159335.0,
+            "p75": 137167.0,
+            "p99": 734666.0,
+            "p995": 1129125.0,
+            "p999": 2339834.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#12:fmt:async] should respect file-level ignore comments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3497,
+            "min": 130417.0,
+            "max": 1370584.0,
+            "avg": 143744.0,
+            "p75": 136333.0,
+            "p99": 364916.0,
+            "p995": 457250.0,
+            "p999": 1024916.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#13:fmt:async] should ensure consistent list indentation (indentWidth: 2)",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3430,
+            "min": 130916.0,
+            "max": 1475917.0,
+            "avg": 146179.0,
+            "p75": 137125.0,
+            "p99": 362334.0,
+            "p995": 490750.0,
+            "p999": 1046333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#14:fmt:async] should ensure consistent list indentation with tabs",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3153,
+            "min": 130500.0,
+            "max": 6737208.0,
+            "avg": 159040.0,
+            "p75": 137334.0,
+            "p99": 543625.0,
+            "p995": 1024000.0,
+            "p999": 3041083.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#15:fmt:async] should wrap prose to the specified lineWidth",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3405,
+            "min": 131834.0,
+            "max": 2911583.0,
+            "avg": 147275.0,
+            "p75": 137958.0,
+            "p99": 389042.0,
+            "p995": 619375.0,
+            "p999": 1618333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#16:fmt:async] should preserve original line breaks with proseWrap:",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3543,
+            "min": 130708.0,
+            "max": 1189959.0,
+            "avg": 141603.0,
+            "p75": 135875.0,
+            "p99": 296333.0,
+            "p995": 352000.0,
+            "p999": 991459.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#17:fmt:async] should always wrap prose with proseWrap: 'always'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3561,
+            "min": 130250.0,
+            "max": 1357500.0,
+            "avg": 140814.0,
+            "p75": 135458.0,
+            "p99": 298291.0,
+            "p995": 373750.0,
+            "p999": 932333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#18:fmt:async] should never wrap prose with proseWrap: 'never'",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3687,
+            "min": 129792.0,
+            "max": 1005500.0,
+            "avg": 135992.0,
+            "p75": 133750.0,
+            "p99": 179958.0,
+            "p995": 220500.0,
+            "p999": 872916.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#19:fmt:async] should align table columns with left alignment",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3444,
+            "min": 131500.0,
+            "max": 1534041.0,
+            "avg": 145604.0,
+            "p75": 137583.0,
+            "p99": 426625.0,
+            "p995": 616000.0,
+            "p999": 1192333.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#20:fmt:async] should align table columns with different alignments",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3552,
+            "min": 132083.0,
+            "max": 932959.0,
+            "avg": 141169.0,
+            "p75": 137125.0,
+            "p99": 274833.0,
+            "p995": 373750.0,
+            "p999": 910542.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#21:fmt:async] should align table columns with mixed content",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3594,
+            "min": 131791.0,
+            "max": 965417.0,
+            "avg": 139506.0,
+            "p75": 136583.0,
+            "p99": 232416.0,
+            "p995": 331875.0,
+            "p999": 839583.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/ext.bench.ts",
+      "group": "fmt:async:md",
+      "name": "[md:#22:fmt:async] should align table columns when empty cells are present",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 3146,
+            "min": 131583.0,
+            "max": 20110208.0,
+            "avg": 159384.0,
+            "p75": 137833.0,
+            "p99": 527542.0,
+            "p995": 928792.0,
+            "p999": 2650375.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    },
+    {
+      "origin": "file:///Users/nb/work/deno_fmt/test/perf/prettier.bench.ts",
+      "group": null,
+      "name": "prettierFormat",
+      "baseline": false,
+      "results": [
+        {
+          "ok": {
+            "n": 409,
+            "min": 612583.0,
+            "max": 6767417.0,
+            "avg": 1248722.0,
+            "p75": 1449250.0,
+            "p99": 5192834.0,
+            "p995": 5466750.0,
+            "p999": 6767417.0,
+            "highPrecision": true,
+            "usedExplicitTimers": false
+          }
+        }
+      ]
+    }
+  ]
+}
