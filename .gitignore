@@ -136,3 +136,7 @@ Thumbs.db
 node_modules
 .env*
 .*.log
+*.*workspace
+.old
+*.lock
+*-lock.*

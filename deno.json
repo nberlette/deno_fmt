@@ -8,23 +8,22 @@
   "tasks": {
     "test": "deno test --unstable --allow-all --no-check",
     "lint": "deno lint --unstable",
-    "fmt": "deno fmt --unstable --ignore=node_modules",
-    "test:bench": "deno bench --unstable --no-check --allow-all",
-    "test:bench:md": "deno bench --unstable --no-check --allow-all --json > ./test/benchmarks/benchmark_$(date +%Y-%m-%d-%H-%M-%S).json",
-    "test:coverage": "deno eval --allow-env \"Deno.env.set('DENO_FMT_COVERAGE_PATH',new Date().toISOString().replace(/[^a-z0-9]+/g,'-').split('T').join('-'))\"; deno test --unstable --no-check --allow-all --coverage=\"./test/coverage/report_${DENO_FMT_COVERAGE_PATH-}\"",
-    "test:coverage:report": "deno coverage --unstable --include=\"^file:\" --exclude=\"test\\.(ts|js)\" --lcov --output=./test/coverage/report_${DENO_FMT_COVERAGE_PATH-}.lcov",
-    "docs:html": "deno doc --html --name=deno_fmt --output=docs --unstable --reload --no-remote mod.ts",
+    "fmt": "deno fmt --unstable",
+    "bench": "deno bench --unstable --no-check --allow-all",
+    "bench:json": "deno bench --unstable --no-check --allow-all --json > ./test/benchmarks/benchmark_$(date +%Y-%m-%d-%H-%M-%S).json",
+    "coverage": "deno run -A --unstable ./test/coverage.sh",
+    "coverage:lcov": "deno coverage --unstable --include=\"^file:\" --exclude=\"test\\.(ts|js)\" --lcov --output=./test/coverage/report_${DENO_FMT_COVERAGE_PATH-}.lcov",
+    "coverage:html": "deno coverage --unstable --include=\"^file:\" --exclude=\"test\\.(ts|js)\" --html --output=./test/coverage/report_${DENO_FMT_COVERAGE_PATH-}.html",
+    "docs": "deno doc --html --name=deno_fmt --output=docs --unstable --reload --no-remote mod.ts",
     "docs:json": "deno doc --json --unstable --reload --no-remote mod.ts",
     "update:plugins": "deno run --unstable --allow-all --no-check ./src/update-plugins.ts"
   },
   "fmt": {
-    "options": {
-      "semiColons": true,
-      "proseWrap": "preserve",
-      "singleQuote": false,
-      "lineWidth": 100,
-      "indentWidth": 2,
-      "useTabs": false
-    }
+    "semiColons": true,
+    "proseWrap": "preserve",
+    "singleQuote": false,
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "useTabs": false
   }
 }
