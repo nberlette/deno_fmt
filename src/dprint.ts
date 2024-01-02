@@ -1,7 +1,8 @@
 import { decode, encode } from "./encoding.ts";
 import { isAnyArrayBuffer } from "./helpers.ts";
 
-const UPDATE_PLUGINS_SCRIPT = import.meta.resolve("./update-plugins.ts").replace(/^file\:\/\//, "");
+const UPDATE_PLUGINS_SCRIPT = import.meta.resolve("./update-plugins.ts")
+  .replace(/^file\:\/\//, "");
 
 // Source: https://github.com/dprint/js-formatter/blob/main/mod.ts
 export const config = {
@@ -17,7 +18,8 @@ export const config = {
     "useTabs": false,
   },
   "json": {
-    "$schema": "https://plugins.dprint.dev/dprint/dprint-plugin-json/0.17.4/schema.json",
+    "$schema":
+      "https://plugins.dprint.dev/dprint/dprint-plugin-json/0.17.4/schema.json",
     "deno": true,
     "commentLine.forceSpaceAfterSlashes": true,
     "ignoreNodeCommentText": "deno-fmt-ignore",
@@ -25,7 +27,8 @@ export const config = {
     "object.preferSingleLine": true,
   },
   "markdown": {
-    "$schema": "https://plugins.dprint.dev/dprint/dprint-plugin-markdown/0.16.0/schema.json",
+    "$schema":
+      "https://plugins.dprint.dev/dprint/dprint-plugin-markdown/0.16.0/schema.json",
     "deno": true,
     "textWrap": "always",
     "emphasisKind": "underscores",
@@ -36,7 +39,8 @@ export const config = {
     "ignoreEndDirective": "deno-fmt-ignore-end",
   },
   "typescript": {
-    "$schema": "https://plugins.dprint.dev/dprint/dprint-plugin-typescript/0.88.1/schema.json",
+    "$schema":
+      "https://plugins.dprint.dev/dprint/dprint-plugin-typescript/0.88.1/schema.json",
     "deno": true,
     "quoteStyle": "preferDouble",
     "quoteProps": "consistent",
@@ -204,7 +208,8 @@ export const config = {
     "whileStatement.spaceAround": false,
   },
   "toml": {
-    "$schema": "https://plugins.dprint.dev/dprint/dprint-plugin-toml/0.4.0/schema.json",
+    "$schema":
+      "https://plugins.dprint.dev/dprint/dprint-plugin-toml/0.4.0/schema.json",
     "deno": true,
     "commentLine.forceSpaceAfterSlashes": true,
     "ignoreNodeCommentText": "deno-fmt-ignore",

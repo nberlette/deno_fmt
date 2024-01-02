@@ -23,7 +23,9 @@ export function isArrayBuffer(it: unknown): it is ArrayBuffer {
   }
 }
 
-export function isAnyArrayBuffer(it: unknown): it is ArrayBuffer | SharedArrayBuffer {
+export function isAnyArrayBuffer(
+  it: unknown,
+): it is ArrayBuffer | SharedArrayBuffer {
   return isArrayBuffer(it) || isSharedArrayBuffer(it);
 }
 

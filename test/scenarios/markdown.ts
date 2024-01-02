@@ -102,8 +102,10 @@ export default {
     options: { ext: "md" },
   }, {
     name: "should align table columns with different alignments",
-    input: "| Left | Center | Right |\n| :--- | :---: | ---: |\n| L    | C      |   R  |",
-    output: "| Left | Center | Right |\n| :--- | :----: | ----: |\n| L    |   C    |     R |\n",
+    input:
+      "| Left | Center | Right |\n| :--- | :---: | ---: |\n| L    | C      |   R  |",
+    output:
+      "| Left | Center | Right |\n| :--- | :----: | ----: |\n| L    |   C    |     R |\n",
     options: { ext: "md" },
   }, {
     name: "should align table columns with mixed content",
@@ -114,7 +116,8 @@ export default {
     options: { ext: "md" },
   }, {
     name: "should align table columns when empty cells are present",
-    input: "| Name | Age | City |\n| --- | --- | --- |\n| John |  | New York |\n| Alice | 30 |  |",
+    input:
+      "| Name | Age | City |\n| --- | --- | --- |\n| John |  | New York |\n| Alice | 30 |  |",
     output:
       "| Name  | Age | City     |\n| ----- | --- | -------- |\n| John  |     | New York |\n| Alice | 30  |          |\n",
     options: { ext: "md" },

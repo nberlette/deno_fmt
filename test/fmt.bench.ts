@@ -34,7 +34,9 @@ Deno.bench({
   name: "formatSync(file)",
   group: "fmt",
   fn() {
-    const actual = fmt.formatSync(import.meta.resolve("../test/data/unformatted_1.ts"));
+    const actual = fmt.formatSync(
+      import.meta.resolve("../test/data/unformatted_1.ts"),
+    );
     assertEquals(actual, expected);
   },
 });

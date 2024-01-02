@@ -28,7 +28,9 @@ async function update(name?: (string & {}) | keyof typeof plugins) {
     const buf = new Uint8Array(await res.arrayBuffer());
     await Deno.writeFile(path, buf, { create: true, mode: 0o755 });
     console.log(
-      `\x1b[1;92m✓ wrote ${(buf.length / 1024 / 1024).toFixed(2)} MB → ${path}\x1b[0m`,
+      `\x1b[1;92m✓ wrote ${
+        (buf.length / 1024 / 1024).toFixed(2)
+      } MB → ${path}\x1b[0m`,
     );
   }
 }

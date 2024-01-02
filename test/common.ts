@@ -60,9 +60,10 @@ export function runner<B extends boolean = false>(
       } = scenario;
 
       const both = sync === "both";
-      const message = `Scenario #$n ($kind) failed for ext "$ext":\n\t($name): it should ${
-        (name ??= "").replace(/^(it\s+)?should\s+/i, "")
-      }\n\t\tInput: $input\n\t\tExpected: $expected\n\t\tActual: $actual\n\t\tOptions: $options\n\n`;
+      const message =
+        `Scenario #$n ($kind) failed for ext "$ext":\n\t($name): it should ${
+          (name ??= "").replace(/^(it\s+)?should\s+/i, "")
+        }\n\t\tInput: $input\n\t\tExpected: $expected\n\t\tActual: $actual\n\t\tOptions: $options\n\n`;
 
       const fnAsync = async () => {
         let source = input, expected: string | boolean = output;
@@ -71,11 +72,17 @@ export function runner<B extends boolean = false>(
         const errorMessage = message.replace(/\$kind/g, "async").replace(
           /\$actual/g,
           actual,
-        ).replace(/\$input/g, JSON.stringify(input)).replace(/\$options/g, JSON.stringify(options))
+        ).replace(/\$input/g, JSON.stringify(input)).replace(
+          /\$options/g,
+          JSON.stringify(options),
+        )
           .replace(
             /\$expected/g,
             JSON.stringify(expected),
-          ).replace(/\$name/g, `${options.check ? "check" : "format"}${sync ? "Sync" : ""}`)
+          ).replace(
+            /\$name/g,
+            `${options.check ? "check" : "format"}${sync ? "Sync" : ""}`,
+          )
           .replace(/\$ext/g, ext).replace(
             /\$n/g,
             String(n + 1),
@@ -91,11 +98,17 @@ export function runner<B extends boolean = false>(
         const errorMessage = message.replace(/\$kind/g, "async").replace(
           /\$actual/g,
           actual,
-        ).replace(/\$input/g, JSON.stringify(input)).replace(/\$options/g, JSON.stringify(options))
+        ).replace(/\$input/g, JSON.stringify(input)).replace(
+          /\$options/g,
+          JSON.stringify(options),
+        )
           .replace(
             /\$expected/g,
             JSON.stringify(expected),
-          ).replace(/\$name/g, `${options.check ? "check" : "format"}${sync ? "Sync" : ""}`)
+          ).replace(
+            /\$name/g,
+            `${options.check ? "check" : "format"}${sync ? "Sync" : ""}`,
+          )
           .replace(/\$ext/g, ext).replace(
             /\$n/g,
             String(n + 1),
@@ -126,7 +139,9 @@ export function runner<B extends boolean = false>(
         const definition = { name, only, ignore, permissions, fn };
         if (bench) {
           const baseline = scenario.baseline ?? false;
-          const group = ["fmt", kind, ext, scenario.group].filter((v) => v?.trim()).join(":");
+          const group = ["fmt", kind, ext, scenario.group].filter((v) =>
+            v?.trim()
+          ).join(":");
           Deno.bench({ ...definition, group, baseline });
         } else {
           Deno.test({ ...definition });

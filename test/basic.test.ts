@@ -4,8 +4,16 @@ import fmt from "../mod.ts";
 const { test } = Deno;
 
 test("[baseline] fmt.format", () => {
-  assertStrictEquals(typeof fmt.format, "function", "format should be a function");
-  assertStrictEquals(fmt.format.name, "format", "format.name should be 'format'");
+  assertStrictEquals(
+    typeof fmt.format,
+    "function",
+    "format should be a function",
+  );
+  assertStrictEquals(
+    fmt.format.name,
+    "format",
+    "format.name should be 'format'",
+  );
   assertStrictEquals(fmt.format.length, 1, "format.length should be 1");
   assertStrictEquals(
     fmt.format.constructor.name,
@@ -15,8 +23,16 @@ test("[baseline] fmt.format", () => {
 });
 
 test("[baseline] fmt.formatSync", () => {
-  assertStrictEquals(typeof fmt.formatSync, "function", "formatSync should be a function");
-  assertStrictEquals(fmt.formatSync.name, "formatSync", "formatSync.name should be 'formatSync'");
+  assertStrictEquals(
+    typeof fmt.formatSync,
+    "function",
+    "formatSync should be a function",
+  );
+  assertStrictEquals(
+    fmt.formatSync.name,
+    "formatSync",
+    "formatSync.name should be 'formatSync'",
+  );
   assertStrictEquals(fmt.formatSync.length, 1, "formatSync.length should be 1");
   assertStrictEquals(
     fmt.formatSync.constructor.name,
@@ -26,7 +42,11 @@ test("[baseline] fmt.formatSync", () => {
 });
 
 test("[baseline] fmt.check", () => {
-  assertStrictEquals(typeof fmt.check, "function", "check should be a function");
+  assertStrictEquals(
+    typeof fmt.check,
+    "function",
+    "check should be a function",
+  );
   assertStrictEquals(fmt.check.name, "check", "check.name should be 'check'");
   assertStrictEquals(fmt.check.length, 1, "check.length should be 1");
   assertStrictEquals(
@@ -37,8 +57,16 @@ test("[baseline] fmt.check", () => {
 });
 
 test("[baseline] fmt.checkSync", () => {
-  assertStrictEquals(typeof fmt.checkSync, "function", "checkSync should be a function");
-  assertStrictEquals(fmt.checkSync.name, "checkSync", "checkSync.name should be 'checkSync'");
+  assertStrictEquals(
+    typeof fmt.checkSync,
+    "function",
+    "checkSync should be a function",
+  );
+  assertStrictEquals(
+    fmt.checkSync.name,
+    "checkSync",
+    "checkSync.name should be 'checkSync'",
+  );
   assertStrictEquals(fmt.checkSync.length, 1, "checkSync.length should be 1");
   assertStrictEquals(
     fmt.checkSync.constructor.name,
