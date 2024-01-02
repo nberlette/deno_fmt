@@ -11,6 +11,7 @@ interface DefaultFormatter extends Formatter {
 
 export const fmt: DefaultFormatter = await Formatter.init({
   type: typeof Deno.Command === "function" ? "cli" : "wasm",
+  cache: { capacity: 100, ttl: 1_800_000 /* 30 minutes */ },
 }) as DefaultFormatter;
 
 // for the default export, and backwards compatibility
