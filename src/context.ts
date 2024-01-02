@@ -1,12 +1,10 @@
 import { LRU } from "./lru.ts";
 import { Sha256 } from "./sha256.ts";
 import { IOptions, Options } from "./options.ts";
-import { decode, encode } from "./encoding.ts";
 import { dprint } from "./dprint.ts";
 import { Config } from "./fmt.ts";
-import { bindSafe } from "./helpers.ts";
+import { bindSafe, encode, decode } from "./helpers.ts";
 
-// #region context.ts
 /**
  * The abstract Context class is the base for the underlying formatter APIs for
  * both the CLI and the WASM implementations. Depending on the environment that
@@ -550,4 +548,3 @@ export class CommandContext extends Context<"cli"> {
     }
   }
 }
-// #endregion context.ts

@@ -1,5 +1,4 @@
-import { decode, encode } from "./encoding.ts";
-import { isAnyArrayBuffer } from "./helpers.ts";
+import { decode, encode, isAnyArrayBuffer } from "./helpers.ts";
 
 const UPDATE_PLUGINS_SCRIPT = import.meta.resolve("./update-plugins.ts")
   .replace(/^file\:\/\//, "");

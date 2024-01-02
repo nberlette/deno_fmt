@@ -629,8 +629,8 @@ export class Sha256 {
   static hash<K extends Format = "hex">(
     message: Message,
     format: K = "hex" as K,
-    is224 = false,
-    sharedMemory = false,
+    is224: boolean | undefined = false,
+    sharedMemory: boolean | undefined = false,
   ): FormatTypes[K] {
     const hash = new Sha256(is224, sharedMemory).update(message);
     return Sha256.#format(hash, format);
@@ -640,8 +640,8 @@ export class Sha256 {
     secretKey: Message,
     message: Message,
     format: K = "hex" as K,
-    is224 = false,
-    sharedMemory = false,
+    is224: boolean | undefined = false,
+    sharedMemory: boolean | undefined = false,
   ): FormatTypes[K] {
     const hmac = new HmacSha256(secretKey, is224, sharedMemory).update(message);
     return Sha256.#format(hmac, format);

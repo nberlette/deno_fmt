@@ -29,6 +29,27 @@ export function isAnyArrayBuffer(
   return isArrayBuffer(it) || isSharedArrayBuffer(it);
 }
 
+export const decoder = new TextDecoder("utf-8", { fatal: true });
+
+export const encoder = new TextEncoder();
+
+export const decode = decoder.decode.bind(decoder);
+
+/**
+ * Returns the result of running UTF-8's encoder.
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/TextEncoder/encode)
+ */
+export const encode = encoder.encode.bind(encoder);
+
+/**
+ * Runs the UTF-8 encoder on source, stores the result of that operation into
+ * destination, and returns the progress made as an object wherein read is the
+ * number of converted code units of source and written is the number of bytes
+ * modified in destination.
+ * [MDN Reference](https://developer.mozilla.org/docs/Web/API/TextEncoder/encodeInto)
+ */
+export const encodeInto = encoder.encodeInto.bind(encoder);
+
 // #region callsites.ts
 /**
  * Simple callsites implementation inspired by the work of Sindre Sorhus.
@@ -47,8 +68,9 @@ export function callsites() {
     };
 
     Error.captureStackTrace(err, callsites);
+    err.stack?.slice();
 
-    const { stack, __callSiteEvals = [] } = err;
+    const { stack = [], __callSiteEvals = [] } = err;
 
     return Object.defineProperties([...stack], {
       __callSiteEvals: { value: __callSiteEvals, enumerable: false },
@@ -66,200 +88,200 @@ type TEvaluatedCallSite = {
   ]: CallSite[P] extends () => infer R ? R : CallSite[P];
 };
 
-declare global {
+/**
+ * An object representing a call site, such as a function call, in V8.
+ * @see https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+ */
+interface CallSite {
   /**
-   * An object representing a call site, such as a function call, in V8.
-   * @see https://v8.dev/docs/stack-trace-api#customizing-stack-traces
+   * Returns the **value** of `this` - if it exists - as a string. Otherwise,
+   * returns `undefined`.
    */
-  interface CallSite {
-    /**
-     * Returns the **value** of `this` - if it exists - as a string. Otherwise,
-     * returns `undefined`.
-     */
-    getThis<T = unknown>(): T | undefined;
+  getThis<T = unknown>(): T | undefined;
 
-    /**
-     * Returns the type of `this` as a string. This is the name of the function
-     * stored in the `[[Constructor]]` field of `this`, if available. Otherwise
-     * the object's `[[Class]]` internal property.
-     */
-    getTypeName(): string | null;
+  /**
+   * Returns the type of `this` as a string. This is the name of the function
+   * stored in the `[[Constructor]]` field of `this`, if available. Otherwise
+   * the object's `[[Class]]` internal property.
+   */
+  getTypeName(): string | null;
 
-    /**
-     * Returns the name of the script if this function was defined in a script.
-     *
-     * In the Deno runtime, this can be used to determine the `import.meta.url`
-     * value of the end user's project, which is useful when authoring modules
-     * that will be imported remotely.
-     */
-    getFileName(): string | null;
+  /**
+   * Returns the name of the script if this function was defined in a script.
+   *
+   * In the Deno runtime, this can be used to determine the `import.meta.url`
+   * value of the end user's project, which is useful when authoring modules
+   * that will be imported remotely.
+   */
+  getFileName(): string | null;
 
-    /**
-     * Returns a reference to the current function itself, if available, else it
-     * returns `undefined`.
-     */
-    // deno-lint-ignore no-explicit-any
-    getFunction<T extends (...args: any[]) => any>(): T | undefined;
+  /**
+   * Returns a reference to the current function itself, if available, else it
+   * returns `undefined`.
+   */
+  // deno-lint-ignore no-explicit-any
+  getFunction<T extends (...args: any[]) => any>(): T | undefined;
 
-    /**
-     * Returns the name of the current function (typically its `name` property).
-     * If the `name` property is not available, an attempt will be made to infer
-     * a name from the function's context. If a name still can't be determined,
-     * returns `null`.
-     */
-    getFunctionName(): string | null;
+  /**
+   * Returns the name of the current function (typically its `name` property).
+   * If the `name` property is not available, an attempt will be made to infer
+   * a name from the function's context. If a name still can't be determined,
+   * returns `null`.
+   */
+  getFunctionName(): string | null;
 
-    /**
-     * Returns the name of the property of `this` or one of its prototypes that
-     * holds the current function.
-     */
-    getMethodName(): string | undefined;
+  /**
+   * Returns the name of the property of `this` or one of its prototypes that
+   * holds the current function.
+   */
+  getMethodName(): string | undefined;
 
-    /**
-     * Returns the line number of the callsite function, if it was defined in a
-     * script. If the line number cannot be determined, returns `null`.
-     */
-    getLineNumber(): number | null;
+  /**
+   * Returns the line number of the callsite function, if it was defined in a
+   * script. If the line number cannot be determined, returns `null`.
+   */
+  getLineNumber(): number | null;
 
-    /**
-     * Returns the column number of the callsite function, if it was defined in a
-     * script. If the column number cannot be determined, returns `null`.
-     */
-    getColumnNumber(): number | null;
+  /**
+   * Returns the column number of the callsite function, if it was defined in a
+   * script. If the column number cannot be determined, returns `null`.
+   */
+  getColumnNumber(): number | null;
 
-    /**
-     * Get the line number of the function's enclosing callsite, if available.
-     * Otherwise, returns `null`.
-     */
-    getEnclosingLineNumber(): number | null;
+  /**
+   * Get the line number of the function's enclosing callsite, if available.
+   * Otherwise, returns `null`.
+   */
+  getEnclosingLineNumber(): number | null;
 
-    /**
-     * Get the column number of the function's enclosing callsite, if available.
-     * Otherwise, returns `null`.
-     */
-    getEnclosingColumnNumber(): number | null;
+  /**
+   * Get the column number of the function's enclosing callsite, if available.
+   * Otherwise, returns `null`.
+   */
+  getEnclosingColumnNumber(): number | null;
 
-    /**
-     * Returns a string representing the location where `eval` was called if this
-     * function was created using a call to `eval`. If it was not created with
-     * `eval` or `new Function`, or it cannot be determined, returns `undefined`.
-     *
-     * @see {@linkcode CallSite.isEval} to check if a function was created using `eval` or `new Function`.
-     */
-    getEvalOrigin(): string | undefined;
+  /**
+   * Returns a string representing the location where `eval` was called if this
+   * function was created using a call to `eval`. If it was not created with
+   * `eval` or `new Function`, or it cannot be determined, returns `undefined`.
+   *
+   * @see {@linkcode CallSite.isEval} to check if a function was created using `eval` or `new Function`.
+   */
+  getEvalOrigin(): string | undefined;
 
-    /**
-     * Returns the first line of the function's body if this function was
-     * defined in a script. If it cannot be determined, returns `null`.
-     */
-    getPosition(): number | null;
+  /**
+   * Returns the first line of the function's body if this function was
+   * defined in a script. If it cannot be determined, returns `null`.
+   */
+  getPosition(): number | null;
 
-    /**
-     * Determine the execution index from an asynchronous call site, if it was
-     * invoked by an async call to `Promise.all()` or `Promise.any()`.
-     *
-     * Returns the numeric index of the Promise, when the call originates from
-     * an invocation of `Promise.all` or `Promise.any`. Otherwise, returns `null`.
-     *
-     * @see {@link CallSite.isAsync} to check for _any_ async call.
-     * @see {@link CallSite.isPromiseAll} to check for `Promise.all` calls.
-     * @async
-     */
-    getPromiseIndex(): number | null;
+  /**
+   * Determine the execution index from an asynchronous call site, if it was
+   * invoked by an async call to `Promise.all()` or `Promise.any()`.
+   *
+   * Returns the numeric index of the Promise, when the call originates from
+   * an invocation of `Promise.all` or `Promise.any`. Otherwise, returns `null`.
+   *
+   * @see {@link CallSite.isAsync} to check for _any_ async call.
+   * @see {@link CallSite.isPromiseAll} to check for `Promise.all` calls.
+   * @async
+   */
+  getPromiseIndex(): number | null;
 
-    /**
-     * Returns the hash of the script if this function was defined in an
-     * embedded `data:` URI.
-     */
-    getScriptHash(): string | null;
+  /**
+   * Returns the hash of the script if this function was defined in an
+   * embedded `data:` URI.
+   */
+  getScriptHash(): string | null;
 
-    /**
-     * If the call site function was defined in a script, returns the name of the
-     * script itself. If the function was defined remotely or in a base64-encoded
-     * data URI, this will attempt to return the source URL. If a value cannot be
-     * determined, returns an empty string (`""`).
-     *
-     * @see {@link CallSite.getScriptHash} to get an encoded script hash.
-     */
-    getScriptNameOrSourceURL(): string;
+  /**
+   * If the call site function was defined in a script, returns the name of the
+   * script itself. If the function was defined remotely or in a base64-encoded
+   * data URI, this will attempt to return the source URL. If a value cannot be
+   * determined, returns an empty string (`""`).
+   *
+   * @see {@link CallSite.getScriptHash} to get an encoded script hash.
+   */
+  getScriptNameOrSourceURL(): string;
 
-    /**
-     * Determine if a call is from an async function (including `Promise.all`
-     * and `Promise.any`), using V8's shiny new zero-cost async-stack-trace API.
-     *
-     * Returns `true` if this is tracing an async call, otherwise `false`.
-     *
-     * @see {@link CallSite.isPromiseAll} to check for `Promise.all` calls.
-     * @see {@link CallSite.getPromiseIndex} to get the index of the Promise call
-     * @async
-     */
-    isAsync(): boolean;
+  /**
+   * Determine if a call is from an async function (including `Promise.all`
+   * and `Promise.any`), using V8's shiny new zero-cost async-stack-trace API.
+   *
+   * Returns `true` if this is tracing an async call, otherwise `false`.
+   *
+   * @see {@link CallSite.isPromiseAll} to check for `Promise.all` calls.
+   * @see {@link CallSite.getPromiseIndex} to get the index of the Promise call
+   * @async
+   */
+  isAsync(): boolean;
 
-    /**
-     * Is the call from a class constructor or a "newable" function?
-     *
-     * Returns `true` if the call site originated with `new`, otherwise `false`.
-     */
-    isConstructor(): boolean;
+  /**
+   * Is the call from a class constructor or a "newable" function?
+   *
+   * Returns `true` if the call site originated with `new`, otherwise `false`.
+   */
+  isConstructor(): boolean;
 
-    /**
-     * Returns `true` if this call takes place in code defined by a call to
-     * `eval`, or if it was constructed using `new Function(...)` syntax.
-     * Otherwise, returns `false`.
-     *
-     * @see {@link CallSite.getEvalOrigin} to get the source location of an `eval` call.
-     */
-    isEval(): boolean;
+  /**
+   * Returns `true` if this call takes place in code defined by a call to
+   * `eval`, or if it was constructed using `new Function(...)` syntax.
+   * Otherwise, returns `false`.
+   *
+   * @see {@link CallSite.getEvalOrigin} to get the source location of an `eval` call.
+   */
+  isEval(): boolean;
 
-    /**
-     * Does this call originate from native V8 code? This resolves to `true` for
-     * invocations of any built-in functions, such as `Array.prototype.push()`.
-     *
-     * Returns `true` if this call is in native V8 code.
-     */
-    isNative(): boolean;
+  /**
+   * Does this call originate from native V8 code? This resolves to `true` for
+   * invocations of any built-in functions, such as `Array.prototype.push()`.
+   *
+   * Returns `true` if this call is in native V8 code.
+   */
+  isNative(): boolean;
 
-    /**
-     * Is this an async call to `Promise.all()`?
-     *
-     * Returns `true` if this is an asynchronous call to `Promise.all`. Returns
-     * `false` for everything else, even if it **_is async_**, but **_is not_**
-     * explicitly from `Promise.all()`.
-     *
-     * @see {@link CallSite.isAsync} to check for _any_ async call.
-     * @see {@link CallSite.getPromiseIndex} to get the index of the Promise call
-     * @async
-     */
-    isPromiseAll(): boolean;
+  /**
+   * Is this an async call to `Promise.all()`?
+   *
+   * Returns `true` if this is an asynchronous call to `Promise.all`. Returns
+   * `false` for everything else, even if it **_is async_**, but **_is not_**
+   * explicitly from `Promise.all()`.
+   *
+   * @see {@link CallSite.isAsync} to check for _any_ async call.
+   * @see {@link CallSite.getPromiseIndex} to get the index of the Promise call
+   * @async
+   */
+  isPromiseAll(): boolean;
 
-    /**
-     * Returns `true` if this is a top-level invocation; top-level means an
-     * object is either a global object, or is invoked at the outermost layer of
-     * a script or module (and not nested inside another function / block).
-     */
-    isToplevel(): boolean;
+  /**
+   * Returns `true` if this is a top-level invocation; top-level means an
+   * object is either a global object, or is invoked at the outermost layer of
+   * a script or module (and not nested inside another function / block).
+   */
+  isToplevel(): boolean;
 
-    /**
-     * Serializes the call site into a string, suitable for a stack trace entry.
-     *
-     * The format of the serialized string is:
-     * ```
-     * [TypeName.]MethodName (FileName:LineNumber:ColumnNumber)
-     * ```
-     *
-     * **Note**: While this can be used directly, it is primarily intended as a
-     * helper for the `Error.prepareStackTrace` API.
-     *
-     * @example Object.foo (file:///Users/foo/bar.ts:1:1)
-     */
-    toString(): string;
-  }
+  /**
+   * Serializes the call site into a string, suitable for a stack trace entry.
+   *
+   * The format of the serialized string is:
+   * ```
+   * [TypeName.]MethodName (FileName:LineNumber:ColumnNumber)
+   * ```
+   *
+   * **Note**: While this can be used directly, it is primarily intended as a
+   * helper for the `Error.prepareStackTrace` API.
+   *
+   * @example Object.foo (file:///Users/foo/bar.ts:1:1)
+   */
+  toString(): string;
+}
 
-  namespace CallSite {
-    // deno-lint-ignore no-empty-interface
-    export interface Evaluated extends TEvaluatedCallSite {}
-  }
+declare namespace CallSite {
+  // deno-lint-ignore no-empty-interface
+  export interface Evaluated extends TEvaluatedCallSite {}
+}
 
+declare global {
   interface ErrorConstructor {
     /**
      * Create `.stack` property on a target object.
@@ -300,10 +322,7 @@ export function sleepSync(
   cb?: (...args: unknown[]) => unknown,
   ...args: unknown[]
 ): unknown {
-  const start = Date.now();
-  while (
-    Atomics.wait(dreams, 0, 0, ms - (Date.now() - start)) !== "timed-out"
-  ); // spin
+  Atomics.wait(dreams, 0, 0, ms);
   return cb?.(...args);
 }
 
@@ -328,14 +347,7 @@ export async function sleep(
   });
 }
 
-export declare namespace sleep {
-  export { sleepSync as sync };
-}
-
-// deno-lint-ignore no-namespace
-export namespace sleep {
-  sleep.sync = sleepSync;
-}
+sleep.sync = sleepSync;
 // #endregion sleep.ts
 
 // #region bind.ts
