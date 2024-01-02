@@ -1122,11 +1122,3 @@ export declare namespace Formatter {
     readonly context: CommandContext;
   }
 }
-
-const type = typeof Deno.Command === "function" ? "cli" : "wasm";
-
-export const fmt: Formatter = await Formatter.init({ type });
-
-export const { format, formatSync, check, checkSync } = fmt;
-
-export default fmt;
