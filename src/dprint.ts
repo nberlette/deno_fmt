@@ -553,6 +553,10 @@ export class dprint implements Formatter {
     return new Uint8Array(buffer, pointer, length);
   }
 
+  static #canUpdatePlugins(): boolean {
+    return !!dprint.autoUpdate && typeof Deno.Command === "function";
+  }
+
   static async getPlugin(
     name: PluginName,
   ): Promise<Formatter> {
@@ -560,9 +564,16 @@ export class dprint implements Formatter {
       const url = import.meta.resolve(`./wasm/${name}.wasm`);
       return dprint.create(fetch(url));
     } catch (err) {
-      if (err.name === "NotFound" && dprint.autoUpdate) {
+      if (err.name === "NotFound" && dprint.#canUpdatePlugins()) {
         const cmd = new Deno.Command(Deno.execPath(), {
-          args: ["run", "--allow-all", UPDATE_PLUGINS_SCRIPT],
+          args: [
+            "run",
+            "--allow-read",
+            "--allow-write",
+            "--allow-net",
+            UPDATE_PLUGINS_SCRIPT,
+            name,
+          ],
           stdin: "null",
           stderr: "piped",
           stdout: "piped",
@@ -596,27 +607,35 @@ export class dprint implements Formatter {
       const buf = Deno.readFileSync(url);
       return dprint.create(buf.buffer);
     } catch (err) {
-      if (err.name === "NotFound" && dprint.autoUpdate) {
+      if (err.name === "NotFound" && dprint.#canUpdatePlugins()) {
         // try to fetch and update the plugins synchronously
         // this is a little workaround for the fact that the Fetch API is a
         // strictly asynchronous API. we invoke a separate Deno process to
         // handle the asynchronous work, but we invoke it synchronously ;)
         const output = new Deno.Command(Deno.execPath(), {
-          args: ["run", "--allow-read", "--allow-write", "--allow-net", UPDATE_PLUGINS_SCRIPT],
+          args: [
+            "run",
+            "--allow-read",
+            "--allow-write",
+            "--allow-net",
+            UPDATE_PLUGINS_SCRIPT,
+            name,
+          ],
           stdin: "null",
-          // stderr: "piped",
-          // stdout: "piped",
+          stderr: "piped",
+          stdout: "piped",
           cwd: import.meta.url.replace(/\/[^\/]+$/, ""),
         }).outputSync();
 
         if (!output.success) {
-          // const stderr = decode(output.stderr), stdout = decode(output.stdout);
+          const stderr = decode(output.stderr);
+          const stdout = decode(output.stdout);
           throw new Error(
-            `Failed to update WASM plugins (exit code ${output.code}).`, //\n\nStderr: ${stderr}\n\nStdout: ${stdout}`,
+            `Failed to update WASM plugins (exit code ${output.code}).\n\nStderr: ${stderr}\n\nStdout: ${stdout}`,
           );
         }
 
-        // try again
+        // now let's try again
         return dprint.getPluginSync(name);
       } else {
         throw err;
