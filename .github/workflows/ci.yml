@@ -5,16 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
       - name: Setup Deno
         uses: denoland/setup-deno@v1
-        with:
-          deno-version: 1.x
+
       - name: "deno fmt --check"
         run: deno fmt --check --unstable
+
       - name: "deno lint"
-        run: deno lint --unstable --no-check
+        run: deno lint --unstable
+
       - name: "deno test"
         run: deno test --allow-all --unstable --no-check
