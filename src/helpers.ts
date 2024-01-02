@@ -371,7 +371,6 @@ export function bindSafe<
 ): ((this: T, ...args: B) => R) & typeof target {
   const props = Object.getOwnPropertyDescriptors(target);
   const fn = $bind.call(target, thisArg, ...args);
-  const length = Math.max(target.length - args.length, 0);
 
   for (const key in props) {
     // skip the constructor and name properties
