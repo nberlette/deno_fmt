@@ -435,12 +435,10 @@ export class Formatter implements Disposable {
   }
 
   #context!: Context;
-  #config!: Config;
 
   constructor(config?: Config) {
-    this.#config = config ?? {};
-
-    const { type = "cli", cleanup, options } = this.config;
+    const { type = "cli", cleanup } = config ??= {};
+    config.type === type;
 
     if (type === "cli" && typeof Deno.Command === "function") {
       this.#context = new CommandContext(config);
@@ -448,16 +446,11 @@ export class Formatter implements Disposable {
       this.#context = new WasmContext(config);
     }
 
-    Object.assign(this.config, config ?? {});
-    Object.assign(this.context.options, options ?? {});
-
     if (!cleanup) {
       this.config.cleanup = () => {};
     } else if (typeof cleanup === "function") {
-      this.config.cleanup = cleanup;
+      this.config.cleanup = bindSafe(cleanup, this);
     }
-
-    this.config.cleanup &&= this.config.cleanup!.bind(this);
 
     this.format = bindSafe(this.format, this);
     this.formatSync = bindSafe(this.formatSync, this);
@@ -466,12 +459,12 @@ export class Formatter implements Disposable {
   }
 
   public get config(): Config.Resolved {
-    return this.#config as Config.Resolved;
+    return this.context.config as Config.Resolved;
   }
 
   public get context(): Context {
     return this.#context ??= new (
-      this.config.type === "wasm" ? WasmContext : CommandContext
+      this.config.type === "cli" ? CommandContext : WasmContext
     )();
   }
 
@@ -1117,10 +1110,10 @@ export class Formatter implements Disposable {
 
     if (depth === null || depth < 0) return tag;
 
-    const { config, options: opts } = this;
+    const { config } = this;
 
     return `${tag} ${
-      inspect({ config, options: opts }, {
+      inspect({ config }, {
         ...options,
         getters: true,
         compact: 3,
