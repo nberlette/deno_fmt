@@ -1,5 +1,5 @@
 import { callsites } from "./helpers.ts";
-import type { InspectOptions, InspectOptionsStylized } from "node:util";
+import type { InspectOptions, InspectOptionsStylized } from "./types.d.ts";
 
 export const defaultOptions = {
   useTabs: false,
@@ -648,32 +648,26 @@ export class Options implements IOptions {
           options: InspectOptionsStylized,
           inspect: (v: unknown, o?: InspectOptions) => string,
         ): string => {
-          const { stylize: s } = options, sp = "special";
-
-          if (depth === null || depth < 0) return s(`[Options]`, sp);
-
+          const { stylize } = options, sp = "special";
+          depth = (depth ?? options.depth ?? 2) - 1;
+          if (depth < 0) return stylize(`[Options]`, sp);
+          options = {
+            ...options,
+            depth,
+            getters: true,
+            colors: true,
+            numericSeparator: true,
+          };
           const obj = {
             ...this,
             toFlags: this.toFlags(),
           };
 
-          return `${s("Options", sp)} ${
-            inspect(obj, {
-              ...options,
-              getters: true,
-              compact: 3,
-              colors: true,
-            })
-          }`;
+          return `${stylize("Options", sp)} ${inspect(obj, options)}`;
         },
         enumerable: false,
         configurable: true,
       },
-      // toDprint: { value: bindSafe(this.toDprint, this), enumerable: false },
-      // toFlags: { value: bindSafe(this.toFlags, this), enumerable: false },
-      // toJSON: { value: bindSafe(this.toJSON, this), enumerable: false },
-      // toString: { value: bindSafe(this.toString, this), enumerable: false },
-      // normalize: { value: bindSafe(this.normalize, this), enumerable: false },
     });
 
     return new Proxy(this, {

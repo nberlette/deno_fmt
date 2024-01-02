@@ -1,23 +1,11 @@
 /// <reference lib="deno.unstable" />
-/// <reference lib="deno.window" />
 
 // deno-lint-ignore-file no-namespace
-
-/*!
- * This is a bundled version of the third-party `deno_fmt` module (not
- * to be confused with the built-in `fmt` module). The original source
- * code can be found at the GitHub Repository or on deno.land/x:
- *  - https://github.com/nberlette/deno_fmt#readme
- *  - https://deno.land/x/deno_fmt/mod.ts?source
- * ------------------------------------------------------------------
- * Copyright (c) 2024 Nicholas Berlette. All rights reserved.
- * Licensed under the MIT License. See LICENSE for more information.
- */
 import { CommandContext, Context, WasmContext } from "./context.ts";
 import { bindSafe } from "./helpers.ts";
 import { IOptions, Options } from "./options.ts";
 import type { LRU } from "./lru.ts";
-import type { InspectOptions, InspectOptionsStylized } from "node:util";
+import type { InspectOptions, InspectOptionsStylized } from "./types.d.ts";
 
 export type Language =
   | "typescript"

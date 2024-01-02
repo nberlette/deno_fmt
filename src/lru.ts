@@ -1,23 +1,24 @@
-// #region lru.ts
-type Callback<
+import { InspectOptions, InspectOptionsStylized } from "./types.d.ts";
+
+export type Callback<
   T = unknown,
   A extends readonly unknown[] = [],
   R = void | PromiseLike<void>,
 > = ((this: T, ...args: A) => R) extends infer V ? V : never;
 
-type OnRemoveCallback<T = unknown> =
+export type OnRemoveCallback<T = unknown> =
   | Callback<LRU<T>, [value: T, key: string, time: number], void>
   | Callback<LRU<T>, [value: T, key: string, time: number], PromiseLike<void>>;
 
-type OnRefreshCallback<T = unknown> =
+export type OnRefreshCallback<T = unknown> =
   | Callback<LRU<T>, [value: T, key: string, time: number], void>
   | Callback<LRU<T>, [value: T, key: string, time: number], PromiseLike<void>>;
 
-type OnDisposeCallback<T = unknown> =
+export type OnDisposeCallback<T = unknown> =
   | Callback<LRU<T>, [], void>
   | Callback<LRU<T>, [], PromiseLike<void>>;
 
-type Entry<T> = readonly [value: T, time: number];
+export type Entry<T> = readonly [value: T, time: number];
 
 /**
  * turtll: tiny + fast implementation of an LRU with TTL and fixed capacity,
@@ -316,19 +317,18 @@ export class LRU<T> {
 
   [Symbol.for("nodejs.util.inspect.custom")](
     depth: number | null,
-    // deno-lint-ignore no-explicit-any
-    options: any,
-    inspect: (value: unknown, options?: unknown) => string,
+    options: InspectOptionsStylized,
+    inspect: (value: unknown, options?: InspectOptions) => string,
   ): string {
     options = {
       ...options ?? {},
-      depth: depth === null ? null : (depth || options.depth) - 1,
+      depth: depth === null ? null : (depth || options?.depth || 2) - 1,
       colors: options.colors ?? true,
       compact: 3,
       customInspect: false,
       getters: true,
       showHidden: options.showHidden ?? false,
-      numericSeparators: true,
+      numericSeparator: true,
     };
 
     const { size, capacity, timeout, constructor: { name } } = this;
@@ -343,4 +343,3 @@ export class LRU<T> {
     return `${name} ${inspect(target, options)}`;
   }
 }
-// #endregion lru.ts
