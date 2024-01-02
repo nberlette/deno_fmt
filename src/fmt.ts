@@ -1096,9 +1096,9 @@ export class Formatter implements Disposable {
     inspect: (v: unknown, o?: InspectOptions) => string,
   ): string {
     const { stylize: s } = options, sp = "special";
-    const tag = `${s(`[${this.constructor.name}: `, sp)}${
-      s(this.context.name, "string")
-    }${s("]", sp)}`;
+    const tag = `${s(`[${this.constructor.name}: `, sp)}${s(this.context.name, "string")}${
+      s("]", sp)
+    }`;
 
     if (depth === null || depth < 0) return tag;
 

@@ -1,4 +1,3 @@
-
 export const decoder = new TextDecoder("utf-8", { fatal: true });
 
 export const encoder = new TextEncoder();

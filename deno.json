@@ -18,10 +18,6 @@
     "update:plugins": "deno run --unstable --allow-all --no-check ./src/update-plugins.ts"
   },
   "fmt": {
-    "files": {
-      "include": [],
-      "exclude": []
-    },
     "options": {
       "semiColons": true,
       "proseWrap": "preserve",

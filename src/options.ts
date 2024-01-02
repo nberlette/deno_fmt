@@ -319,11 +319,10 @@ export class Options implements IOptions {
 
     if (typeof cwd === "string") {
       const stack = callsites();
-      const baseURL =
-        (stack[1]?.getFileName() ?? stack[0]?.getFileName() ?? "").replace(
-          /\/[^\/]+$/,
-          "",
-        ) || "file:///";
+      const baseURL = (stack[1]?.getFileName() ?? stack[0]?.getFileName() ?? "").replace(
+        /\/[^\/]+$/,
+        "",
+      ) || "file:///";
       if (!URL.canParse(cwd, baseURL)) {
         sanitized.cwd = new URL("./", baseURL).toString();
       } else {
@@ -582,8 +581,7 @@ export class Options implements IOptions {
     dprint: Options.convertToDprint,
   });
 
-  static readonly dprint: typeof Options.convertToDprint =
-    Options.convertToDprint;
+  static readonly dprint: typeof Options.convertToDprint = Options.convertToDprint;
 
   static readonly default: Options.Resolved = {
     check: false,

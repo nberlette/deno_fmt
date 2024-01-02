@@ -1,4 +1,3 @@
-
 export function isSharedArrayBuffer(it: unknown): it is SharedArrayBuffer {
   try {
     const SharedArrayBufferPrototypeGetByteLength = Object
