@@ -209,19 +209,19 @@ export class Options implements IOptions {
 
   static [Symbol.hasInstance](it: unknown): it is Options {
     return Function[Symbol.hasInstance].call(Options, it) || (
-      typeof it === "object" && it !== null && !Array.isArray(it) &&
-      Object.keys(it).every((key) =>
-        key in Options.default && key in it && ((
-          typeof it[key as keyof typeof it] ===
-            typeof Options.default[key as keyof Options.Resolved]
-        ) || (key === "config" &&
-          ["string", "boolean"].includes(typeof it[key as keyof typeof it])))
+      typeof it === "object" && it != null && !Array.isArray(it) &&
+      Object.getOwnPropertyNames(it).every((key) =>
+        Object.hasOwn(Options.default, key) && (key === "config" &&
+            ["string", "boolean"].includes(typeof it[key as keyof typeof it]) || (
+            typeof it[key as keyof typeof it] ===
+              typeof Options.default[key as keyof Options.Resolved]
+          ))
       )
     );
   }
 
   static hasInstance(it: unknown): it is Options {
-    return it != null && typeof it === "object" && it instanceof Options;
+    return it != null && it instanceof Options;
   }
 
   static filesOnly = false;
@@ -267,9 +267,7 @@ export class Options implements IOptions {
     fallbacks: U = Options.default as unknown as U,
   ): Options {
     for (const [key, value] of Object.entries(fallbacks)) {
-      if (key in options && value == undefined) {
-        options[key as keyof T] = value as T[keyof T];
-      }
+      options[key as keyof T] ??= value as T[keyof T];
     }
 
     return options instanceof Options ? options : new Options(options);
@@ -835,6 +833,11 @@ export class Options implements IOptions {
   /** Converts the options object into a string of command-line flags. */
   toString(): string {
     return this.toFlags().join(" ");
+  }
+
+  static {
+    Object.seal(Options.default);
+    Object.freeze(Options.allowed);
   }
 }
 

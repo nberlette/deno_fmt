@@ -49,7 +49,9 @@ export abstract class Context<K extends string = string> {
       cleanup,
     };
     if (options) {
-      this.#config.options = Options.normalize(Options.merge(options, this.options));
+      this.#config.options = Options.normalize(
+        Options.merge(options, this.options),
+      );
     }
   }
 
@@ -137,10 +139,10 @@ export abstract class Context<K extends string = string> {
     input: string | BufferSource | TemplateStringsArray,
     values: unknown[],
   ): [code: string, options: Options] {
-    const overrides: Options = new Options(Object.assign(
+    const overrides: Options = Object.assign(
       {},
       ...values.filter(Options.hasInstance),
-    ));
+    );
     const options = Options.merge(overrides, this.options);
     const interpolations = values.filter((v) => !Options.hasInstance(v));
 
@@ -218,15 +220,22 @@ export class WasmContext extends Context<"wasm"> {
 
   async format(input: string, overrides?: Options): Promise<string> {
     this.disposedCheck();
-    const merged = Options.normalize(
-      Options.merge(overrides ?? {}, this.options),
-    );
+    const merged = Options.merge(new Options(overrides ?? {}), this.options);
     const options = Options.convertToDprint(merged);
     const hash = this.getCanonicalHash(input, merged);
     let cached = this.cache.get(hash);
     if (!cached) {
       const plugin = await this.getPlugin(overrides);
-      cached = plugin.format(input, options);
+      // match the behavior of the command context
+      try {
+        cached = plugin.format(input, options);
+      } catch (err) {
+        if (err.message.startsWith("Unexpected ")) {
+          return input;
+        } else {
+          throw err;
+        }
+      }
       this.cache.set(hash, cached);
     }
     return await Promise.resolve(cached);
@@ -234,13 +243,22 @@ export class WasmContext extends Context<"wasm"> {
 
   formatSync(input: string, overrides?: Options): string {
     this.disposedCheck();
-    const merged = Options.merge(overrides ?? {}, this.options).normalize();
-    const options = merged.toDprint();
+    const merged = Options.merge(new Options(overrides ?? {}), this.options);
+    const options = Options.convertToDprint(merged);
     const hash = this.getCanonicalHash(input, merged);
     let cached = this.cache.get(hash);
     if (!cached) {
       const plugin = this.getPluginSync(overrides);
-      cached = plugin.format(input, options);
+      // match the behavior of the command context
+      try {
+        cached = plugin.format(input, options);
+      } catch (err) {
+        if (err.message.startsWith("Unexpected ")) {
+          return input;
+        } else {
+          throw err;
+        }
+      }
       this.cache.set(hash, cached);
     }
     return cached;
@@ -248,22 +266,36 @@ export class WasmContext extends Context<"wasm"> {
 
   async check(input: string, overrides?: Options): Promise<boolean> {
     this.disposedCheck();
-    const merged = Options.normalize(
-      Options.merge(overrides ?? {}, this.options),
-    );
+    const merged = Options.merge(overrides ?? new Options(), this.options);
     const options = merged.toDprint();
     const plugin = await this.getPlugin(merged);
-    return plugin.check(input, options);
+    // match the behavior of the command context
+    try {
+      return plugin.check(input, options);
+    } catch (err) {
+      if (err.message.startsWith("Unexpected ")) {
+        return false;
+      } else {
+        throw err;
+      }
+    }
   }
 
   checkSync(input: string, overrides?: Options): boolean {
     this.disposedCheck();
-    const merged = Options.normalize(
-      Options.merge(overrides ?? {}, this.options),
-    );
+    const merged = Options.merge(overrides ?? new Options(), this.options);
     const options = merged.toDprint();
     const plugin = this.getPluginSync(merged);
-    return plugin.check(input, options);
+    // match the behavior of the command context
+    try {
+      return plugin.check(input, options);
+    } catch (err) {
+      if (err.message.startsWith("Unexpected ")) {
+        return false;
+      } else {
+        throw err;
+      }
+    }
   }
 
   async getPlugin(overrides?: IOptions): Promise<dprint.Formatter> {
@@ -297,6 +329,16 @@ export class WasmContext extends Context<"wasm"> {
   initSync(): void {
     this.getPluginSync(this.options);
   }
+
+  [Symbol.dispose](): void {
+    if (!this.disposed) {
+      if (this.config.cleanup && typeof this.config.cleanup === "function") {
+        // @ts-ignore the function is bound to the formatter
+        this.config.cleanup();
+      }
+      this.disposed = true;
+    }
+  }
 }
 
 export class CommandContext extends Context<"cli"> {
@@ -307,8 +349,6 @@ export class CommandContext extends Context<"cli"> {
     stderr: "piped",
     stdin: "null",
   };
-
-  #tmp = Deno.makeTempDirSync({ prefix: "deno-fmt-", suffix: "-cache" });
 
   constructor(config?: Config) {
     super(config);
@@ -327,20 +367,20 @@ export class CommandContext extends Context<"cli"> {
     await this.#ensureRunPermission();
     this.disposedCheck();
 
-    const options = Options.normalize({ ...this.options, ...overrides });
+    const options = Options.merge(overrides ?? new Options(), this.options);
     const hash = this.getCanonicalHash(input, options);
     let output = this.cache.get(hash);
 
     if (output === undefined) {
       const buffer = encode(input);
-      const args = ["fmt", ...options.toFlags(), "-"];
+      const flags = Options.convertToFlags(options);
 
       const commandOptions = {
         ...this.#commandOptions,
         stdout: "piped",
         stderr: "piped",
         stdin: "piped",
-        args,
+        args: ["fmt", ...flags, "-"] as string[],
       } as const;
 
       const cmd = new Deno.Command(Deno.execPath(), commandOptions).spawn();
@@ -392,7 +432,9 @@ export class CommandContext extends Context<"cli"> {
         } else if (stdout.length > 0 && this.#hasErrors(stdout)) {
           cause = new Error(stdout);
         }
-        err = new Error(`[fmt] Process exited with code ${exitCode}.`, { cause });
+        err = new Error(`[fmt] Process exited with code ${exitCode}.`, {
+          cause,
+        });
         Error.captureStackTrace?.(err);
         Object.assign(err, { commandOptions, options, context: this });
         throw err;
@@ -408,7 +450,7 @@ export class CommandContext extends Context<"cli"> {
     this.#ensureRunPermissionSync();
     this.disposedCheck();
 
-    const options = Options.normalize({ ...this.options, ...overrides });
+    const options = Options.merge(overrides ?? new Options(), this.options);
     const { ext } = options;
     const hash = this.getCanonicalHash(input, options);
     let output = this.cache.get(hash);
@@ -446,7 +488,9 @@ export class CommandContext extends Context<"cli"> {
         } else if (stdout.length > 0 && this.#hasErrors(stdout)) {
           cause = new Error(stdout);
         }
-        err = new Error(`[fmt] Process exited with code ${exitCode}.`, { cause });
+        err = new Error(`[fmt] Process exited with code ${exitCode}.`, {
+          cause,
+        });
         Error.captureStackTrace?.(err);
         Object.assign(err, { commandOptions, options, context: this, tmp });
         throw err;
@@ -488,20 +532,20 @@ export class CommandContext extends Context<"cli"> {
 
   [Symbol.dispose](): void {
     if (!this.disposed) {
-      this.disposed = true;
-      if (this.#tmp) {
-        Deno.removeSync(this.#tmp, { recursive: true });
-        this.#tmp = null!;
+      if (this.config.cleanup && typeof this.config.cleanup === "function") {
+        // @ts-ignore the function is bound to the formatter
+        this.config.cleanup();
       }
+      this.disposed = true;
     }
   }
 
   async [Symbol.asyncDispose](): Promise<void> {
     if (!this.disposed) {
       this.disposed = true;
-      if (this.#tmp) {
-        await Deno.remove(this.#tmp, { recursive: true }).catch(() => {});
-        this.#tmp = null!;
+      if (this.config.cleanup && typeof this.config.cleanup === "function") {
+        // @ts-ignore the function is bound to the formatter
+        await Promise.resolve(this.config.cleanup());
       }
     }
   }
