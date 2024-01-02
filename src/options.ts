@@ -228,14 +228,8 @@ export class Options implements IOptions {
   static filesOnly = false;
 
   static sanitizePath(path: string | URL): string {
-    // these are the characters that we want to remove from the path, as they
-    // are the most likely candidates for malicious code injection. while some
-    // of these characters are valid in some file systems, and some are valid
-    // in URLs (like `?` for query strings, or `<` and `>` in NPM package
-    // version specifiers), they do not fit our use case and therefore can be
-    // eliminated wholesale.
     // deno-lint-ignore no-control-regex
-    const badRegExp = /[\s'";\{\}\[\]\(\)\^\[\]]+|[^\x00-\x7F]+|[<>:"\|\?\*]+/g;
+    const badRegExp = /[^\x00-\x7F]+|[<>:"\|\?\*]+/g;
 
     if (new URL(path, "file://").protocol === "file:") {
       const pathname = new URL(path, "file://").pathname;
@@ -249,15 +243,8 @@ export class Options implements IOptions {
           `Expected a file path, but received a directory: ${path} (${typeof path})`,
         );
       }
-
-      return path;
-    } else {
-      const error = new URIError(
-        "Invalid URL protocol. Currently only local files are supported.",
-      );
-      Error.captureStackTrace?.(error);
-      throw error;
     }
+    return path.toString();
   }
 
   static merge<
