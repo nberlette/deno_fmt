@@ -370,14 +370,16 @@ export function bindSafe<
   ...args: A
 ): ((this: T, ...args: B) => R) & typeof target {
   const props = Object.getOwnPropertyDescriptors(target);
-  const value = target.name;
   const fn = $bind.call(target, thisArg, ...args);
   const length = Math.max(target.length - args.length, 0);
-  Object.defineProperties(fn, {
-    name: { value, configurable: true },
-    length: { value: length, configurable: true },
-    toString: {
-      value: function toString(this: typeof target) {
+
+  for (const key in props) {
+    // skip the constructor and name properties
+    if (key === "constructor") continue;
+    const descriptor = props[key];
+    const { value, get, set } = descriptor;
+    if (key === "toString") {
+      descriptor.value = function toString(this: typeof target) {
         let str = Function.prototype.toString.call(this);
         const check = () => str.includes("[native code]");
         if (check()) str = this.toString();
@@ -385,16 +387,8 @@ export function bindSafe<
           str = `function ${this.name || "anonymous"}() { [native code] }`;
         }
         return str;
-      }.bind(target),
-    },
-  });
-
-  for (const key in props) {
-    // skip the constructor and name properties
-    if (key === "constructor" || key === "name") continue;
-    const descriptor = props[key];
-    const { value, get, set } = descriptor;
-    if (value && typeof value === "function") {
+      }.bind(target);
+    } else if (value && typeof value === "function") {
       // bind static methods to the original thisArg
       // - note: this uses the new bind method, not the original, meaning it
       // may recursively bind any nested methods all the way down the chain
@@ -410,7 +404,8 @@ export function bindSafe<
         descriptor.set = $bind.call(set, target);
       }
     }
-    Object.defineProperty(fn, key, descriptor);
+
+    Reflect.defineProperty(fn, key, descriptor);
   }
 
   return fn;
