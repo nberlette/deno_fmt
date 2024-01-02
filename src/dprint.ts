@@ -1,4 +1,4 @@
-import { decode, encode, isAnyArrayBuffer } from "./helpers.ts";
+import { decode, encode, isAnyArrayBuffer, isDenoDeploy } from "./helpers.ts";
 
 const UPDATE_PLUGINS_SCRIPT = import.meta.resolve("./update-plugins.ts")
   .replace(/^file\:\/\//, "");
@@ -558,7 +558,7 @@ export class dprint implements Formatter {
   }
 
   static #canUpdatePlugins(): boolean {
-    return !!dprint.autoUpdate && typeof Deno.Command === "function";
+    return !!dprint.autoUpdate && !isDenoDeploy();
   }
 
   static async getPlugin(

@@ -29,6 +29,11 @@ export function isAnyArrayBuffer(
   return isArrayBuffer(it) || isSharedArrayBuffer(it);
 }
 
+export function isDenoDeploy(): boolean {
+  const { deno, v8, typescript } = Deno.version ?? {};
+  return !(deno && v8 && typescript);
+}
+
 export const decoder = new TextDecoder("utf-8", { fatal: true });
 
 export const encoder = new TextEncoder();

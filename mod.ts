@@ -1,5 +1,6 @@
 import { Formatter } from "./src/fmt.ts";
 import { Options } from "./src/options.ts";
+import { isDenoDeploy } from "./src/helpers.ts";
 
 export { default as defaultOptions } from "./src/options.ts";
 export { Formatter, Options };
@@ -10,7 +11,7 @@ interface DefaultFormatter extends Formatter {
 }
 
 export const fmt: DefaultFormatter = await Formatter.init({
-  type: typeof Deno.Command === "function" ? "cli" : "wasm",
+  type: isDenoDeploy() ? "wasm" : "cli",
   cache: { capacity: 100, ttl: 1_800_000 /* 30 minutes */ },
 }) as DefaultFormatter;
 

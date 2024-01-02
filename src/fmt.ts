@@ -2,7 +2,7 @@
 
 // deno-lint-ignore-file no-namespace
 import { CommandContext, Context, WasmContext } from "./context.ts";
-import { bindSafe } from "./helpers.ts";
+import { bindSafe, isDenoDeploy } from "./helpers.ts";
 import { IOptions, Options } from "./options.ts";
 import type { LRU } from "./lru.ts";
 import type { InspectOptions, InspectOptionsStylized } from "./types.d.ts";
@@ -428,11 +428,13 @@ export class Formatter implements Disposable {
     const { type = "cli", cleanup } = config ??= {};
     config.type === type;
 
-    if (type === "cli" && typeof Deno.Command === "function") {
-      this.#context = new CommandContext(config);
-    } else {
-      this.#context = new WasmContext(config);
+    if (type === "cli" && !isDenoDeploy()) {
+      if (Deno.permissions.querySync({ name: "run", command: "deno" })) {
+        this.#context = new CommandContext(config);
+      }
     }
+    // default to wasm context if cli context is unavailable
+    this.#context ??= new WasmContext(config);
 
     if (!cleanup) {
       this.config.cleanup = () => {};
